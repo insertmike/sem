@@ -1,6 +1,6 @@
 ## Agenda Sprint 1
 
-  - GitHub project for coursework set-up.
+ [x] - GitHub project for coursework set-up.
   - Product Backlog created.
   - Project builds to self-contained JAR with Maven.
   - Dockerfile for project set-up and works.
