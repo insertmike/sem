@@ -36,8 +36,8 @@ More Information on Coursework can be found [here](https://github.com/Kevin-Sim/
 
 Status | Report Type
 ------ | -------
-       | Country
-       | City
-       | Capital City
-       | Population
-       | Other
+- [ ]  | Country
+- [ ]  | City
+- [ ]  | Capital City
+- [ ]  | Population
+- [ ]  | Other
