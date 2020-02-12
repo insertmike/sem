@@ -12,18 +12,20 @@ public class App
         // Connect to database
         a.connect();
 
+        // Get Target City Record
+        City city = a.getCity(1);
+
+        // Display target result
+        a.displayCity(city);
+
         // Disconnect from database
         a.disconnect();
     }
 
-    /**
-     * Connection to MySQL database.
-     */
+    //Connection to MySQL database
     private Connection con = null;
 
-    /**
-     * Connect to the MySQL database.
-     */
+    // Method to connect to the MySQL database.
     public void connect()
     {
         try
@@ -47,7 +49,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -63,9 +65,7 @@ public class App
         }
     }
 
-    /**
-     * Disconnect from the MySQL database.
-     */
+    // Disconnect from the MySQL database.
     public void disconnect()
     {
         if (con != null)
@@ -79,6 +79,62 @@ public class App
             {
                 System.out.println("Error closing connection to database");
             }
+        }
+    }
+
+    // Method GET Target City Data:
+    public City getCity(int ID)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ID, Name, CountryCode, District, Population "
+                            + "FROM city "
+                            + "WHERE ID = " + ID;
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Return new employee if valid.
+
+            // Check one is returned
+            if (rset.next())
+            {
+                City city = new City();
+                city.id = rset.getInt("ID");
+                city.name = rset.getString("Name");
+                city.country_code = rset.getString("CountryCode");
+                city.district = rset.getString("District");
+                city.population = rset.getInt("Population");
+                return city;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
+    }
+
+
+    // Method for Displaying Target Data:
+    public void displayCity(City city)
+    {
+        if (city != null)
+        {
+            System.out.println(
+                      city.id + " "
+                    + city.name + " "
+                    + city.country_code + "\n"
+                    + city.district + "\n"
+                    + city.population + "\n");
         }
     }
 }

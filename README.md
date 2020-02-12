@@ -51,6 +51,25 @@ do the following:
 
 ---
 
+### Running with Docker Compose:
+
+When running the app, make sure that you have:
+
+1. Packaged Maven Project Build Successfully,
+2. All docker containers & images have been deleted,
+3. Docker is up and running in your local machine,
+
+Now run the app using ```docker-compose.yml``` file.
+
+As an example, the app currently should do the following:
+
+1. Set up 2 docker containers in parallel,
+2. Execute the app container so that it detects, connects, queries & disconnects the
+   docker-db container successfully.
+3. You should see something like this:
+
+---
+
 ### Project Progress:
 
 Status | Report Type
