@@ -32,12 +32,31 @@ More Information on Coursework can be found [here](https://github.com/Kevin-Sim/
 
 ---
 
+### Connecting to the MySQL Container (Step-by-step) guide:
+
+1. Pull/Fetch the latest master-branch version of the coursework.
+2. Make sure docker is set up, connected and running in the background.
+3. Run 'docker-compose.yml' file
+
+To gain direct access to the docker container, and execute SQL Queries within,
+do the following:
+1. Open your terminal inside this project directory.
+2. Run the following command: ```docker exec -it mysql bash -l```
+3. Followed by: ```mysql -u root -p```
+4. Enter your MySQL Container password
+5. Check that you can view your database tables by running ```SHOW DATABASES;```
+6. Done! :)
+7. You can now execute normal MySQL Queries just as if you were running a local MySQL instance using Workbench
+& Command Line Client.
+
+---
+
 ### Project Progress:
 
 Status | Report Type
 ------ | -------
-- [ ]  | Country
-- [ ]  | City
-- [ ]  | Capital City
-- [ ]  | Population
-- [ ]  | Other
+☐  | Country
+☐  | City
+☐  | Capital City
+☐  | Population
+☐  | Other

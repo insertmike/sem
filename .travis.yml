@@ -1,10 +1,14 @@
+# superuser
 sudo: required
 
 language: java
 
+# _________
+# services we wish to use on our system:
 services:
-- docker
+  - docker
 
+# _________
+# after the project has been successfully built.
 after_success:
-- docker build -t se_methods .
-- docker run se_methods
+  - docker-compose up --abort-on-container-exit

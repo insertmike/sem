@@ -7,10 +7,14 @@
     <artifactId>seMethods</artifactId>
     <version>0.1.0.1</version>
 
+    <!--  Declaring Maven Properties  -->
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+
+    <!--  Maven Packaging  -->
 
     <build>
         <plugins>
@@ -38,5 +42,15 @@
             </plugin>
         </plugins>
     </build>
+
+    <!--  MySQL Dependencies  -->
+
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.44</version>
+        </dependency>
+    </dependencies>
 
 </project>
