@@ -68,6 +68,8 @@ As an example, the app currently should do the following:
    docker-db container successfully.
 3. You should see something like this:
 
+![image](https://user-images.githubusercontent.com/20924663/74292782-d7a67200-4d30-11ea-81db-f34bdb9ae940.png)
+
 ---
 
 ### Project Progress:
