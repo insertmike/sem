@@ -104,13 +104,7 @@ public class App
             // Check one is returned
             if (rset.next())
             {
-                City city = new City();
-                city.id = rset.getInt("ID");
-                city.name = rset.getString("Name");
-                city.country_code = rset.getString("CountryCode");
-                city.district = rset.getString("District");
-                city.population = rset.getInt("Population");
-                return city;
+                return new City(rset.getInt("ID"), rset.getString("Name"),  rset.getString("CountryCode"),rset.getString("District"),rset.getInt("Population"));
             }
             else
                 return null;
@@ -123,18 +117,12 @@ public class App
         }
     }
 
-
     // Method for Displaying Target Data:
     public void displayCity(City city)
     {
         if (city != null)
         {
-            System.out.println(
-                      city.id + " "
-                    + city.name + " "
-                    + city.country_code + "\n"
-                    + city.district + "\n"
-                    + city.population + "\n");
+            System.out.println(city);
         }
     }
 }
