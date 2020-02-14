@@ -122,7 +122,7 @@ public class App
     {
         if (city != null)
         {
-            System.out.println(city);
+            System.out.println(city.toString());
         }
     }
 }
