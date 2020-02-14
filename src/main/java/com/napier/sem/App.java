@@ -24,9 +24,7 @@ public class App
         List<City> allCities = a.getAllCities();
 
         System.out.println("Total cities: " + a.getAllCities().size());
-
-        System.out.println("First city in the list: " + a.getAllCities().get(0).toString());
-
+        
         // Disconnect from database
         a.disconnect();
     }
