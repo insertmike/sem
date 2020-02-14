@@ -1,6 +1,8 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App
 {
@@ -17,6 +19,13 @@ public class App
 
         // Display target result
         a.displayCity(city);
+
+        // Get all cities
+        List<City> allCities = a.getAllCities();
+
+        System.out.println("Total cities: " + a.getAllCities().size());
+
+        System.out.println("First city in the list: " + a.getAllCities().get(0).toString());
 
         // Disconnect from database
         a.disconnect();
@@ -80,6 +89,30 @@ public class App
                 System.out.println("Error closing connection to database");
             }
         }
+    }
+    public List<City> getAllCities(){
+        List<City> cities = new ArrayList<>();
+        try{
+
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * FROM city";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while(rset.next()){
+                City curr_city = new City(rset.getInt("ID"), rset.getString("Name"),  rset.getString("CountryCode"),rset.getString("District"),rset.getInt("Population"));
+                cities.add(curr_city);
+            }
+
+        } catch (Exception e){
+            return null;
+        }
+        return cities;
     }
 
     // Method GET Target City Data:
