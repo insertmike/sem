@@ -1,0 +1,43 @@
+
+@startuml
+actor Dev as "Developer"
+
+rectangle Database
+
+rectangle "Developer System" {
+
+    usecase UC9 as "Get countries by largest
+     population to smallest in the world"
+    usecase UC10 as "Get countries by largest
+     population to smallest in the continent"
+    usecase UC11 as "Get countries by largest
+     population to smallest in the region"
+    usecase UC12 as "Get cities by largest
+     population to smallest in the world"
+    usecase UC13 as "Get cities by larges
+    t population to smallest in the continent"
+    usecase UC14 as "Get cities by largest population
+     to smallest in the region"
+    usecase UC15 as "Get cities by largest population
+     to smallest in the district"
+    usecase UCa as "Create Report"
+
+
+    Dev - UC9
+    UC9 - UC10
+    UC10 - UC11
+    UC11 - UC12
+    UC12 - UC13
+    UC13 - UC14
+    UC14 - UC15
+
+    UC9 ..> UCa : include
+    UC10 ..> UCa : include
+    UC11 ..> UCa : include
+    UC12 ..> UCa : include
+    UC13 ..> UCa : include
+    UC14 ..> UCa : include
+    UC15 ..> UCa : include
+    UC15 - Database
+}
+@enduml
