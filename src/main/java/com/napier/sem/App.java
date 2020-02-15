@@ -12,7 +12,7 @@ import java.util.List;
  * @author Miguel Bacharov
  * @author Mihail Yonchev
  * @author Valeri Vladimirov
- * @version 0.1.0.3
+ * @version 0.1.0.4
  * @since   2020-08-02
  */
 public class App
