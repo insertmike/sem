@@ -4,8 +4,24 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <h1>Class App</h1>
+ * The App class is used to ensure and demonstrate implemented functionalities.
+ *
+ * @author Daniela Todorova
+ * @author Miguel Bacharov
+ * @author Mihail Yonchev
+ * @author Valeri Vladimirov
+ * @version 0.1.0.4
+ * @since   2020-08-02
+ */
 public class App
 {
+    /**
+     * This is the main method
+     * @param args Unused.
+     * @return Nothing.
+     */
     public static void main(String[] args)
     {
         // Create new Application
@@ -23,7 +39,16 @@ public class App
         // Get all cities
         List<City> allCities = a.getAllCities();
 
-        System.out.println("Total cities: " + a.getAllCities().size());
+        System.out.println("Total cities: " + allCities.size());
+
+        System.out.println("First city in the list: " + allCities.get(0).toString());
+
+        // Get all countries
+        List<Country> allCountries = a.getAllCountries();
+
+        System.out.println("Total countries: " + allCountries.size());
+
+        System.out.println("First country in the list: " + allCountries.get(0).toString());
         
         // Disconnect from database
         a.disconnect();
@@ -32,7 +57,10 @@ public class App
     //Connection to MySQL database
     private Connection con = null;
 
-    // Method to connect to the MySQL database.
+    /**
+     * Connects to the mysql jdbc driver
+     * @return Nothing;
+     */
     public void connect()
     {
         try
@@ -72,7 +100,11 @@ public class App
         }
     }
 
-    // Disconnect from the MySQL database.
+
+    /**
+     * // Disconnect from the MySQL database.
+     * @return Nothing;
+     */
     public void disconnect()
     {
         if (con != null)
@@ -88,6 +120,45 @@ public class App
             }
         }
     }
+
+    /**
+     * All countries from MySQL world database stored in ArrayList data structure.
+     * @return ArrayList<Country>
+     */
+    public List<Country> getAllCountries(){
+        List<Country> countries = new ArrayList<>();
+        try{
+
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * FROM country";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while(rset.next()){
+                Country curr_country = new Country(rset.getString("Code"), rset.getString("Name"),
+                        rset.getString("Continent"),rset.getString("Region"),rset.getDouble("SurfaceArea"),
+                            rset.getInt("IndepYear"), rset.getInt("Population"), rset.getDouble("LifeExpectancy"),
+                                rset.getDouble("GNP"), rset.getDouble("GNPOld"), rset.getString("LocalName"),
+                                    rset.getString("GovernmentForm"), rset.getString("HeadOfState"),
+                                            rset.getInt("Capital"), rset.getString("Code2"));
+                countries.add(curr_country);
+            }
+
+        } catch (Exception e){
+            return null;
+        }
+        return countries;
+    }
+
+    /**
+     * All cities from MySQL world database stored in ArrayList data structure.
+     * @return ArrayList<City>
+     */
     public List<City> getAllCities(){
         List<City> cities = new ArrayList<>();
         try{
@@ -113,7 +184,9 @@ public class App
         return cities;
     }
 
-    // Method GET Target City Data:
+    /** Method GET Target City Data:
+     * @return City
+     */
     public City getCity(int ID)
     {
         try
@@ -147,8 +220,11 @@ public class App
             return null;
         }
     }
-
-    // Method for Displaying Target Data:
+    
+    /** Method for Displaying Target Data
+     * @param city The city to be displayed
+     * @return Nothing
+     */
     public void displayCity(City city)
     {
         if (city != null)

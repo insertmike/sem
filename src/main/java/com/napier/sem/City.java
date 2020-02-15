@@ -1,7 +1,13 @@
 package com.napier.sem;
 
 /**
- * Represents the City Class
+ * <h1>City Class</h1>
+ * Represents the City class
+ *
+ * @author Daniela Todorova
+ * @author Miguel Bacharov
+ * @author Mihail Yonchev
+ * @author Valeri Vladimirov
  */
 public class City {
     private final int id;
