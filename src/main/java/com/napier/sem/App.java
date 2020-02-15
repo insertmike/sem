@@ -23,7 +23,16 @@ public class App
         // Get all cities
         List<City> allCities = a.getAllCities();
 
-        System.out.println("Total cities: " + a.getAllCities().size());
+        System.out.println("Total cities: " + allCities.size());
+
+        System.out.println("First city in the list: " + allCities.get(0).toString());
+
+        // Get all countries
+        List<Country> allCountries = a.getAllCountries();
+
+        System.out.println("Total countries: " + allCountries.size());
+
+        System.out.println("First country in the list: " + allCountries.get(0).toString());
         
         // Disconnect from database
         a.disconnect();
@@ -88,6 +97,37 @@ public class App
             }
         }
     }
+
+    public List<Country> getAllCountries(){
+        List<Country> countries = new ArrayList<>();
+        try{
+
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * FROM country";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while(rset.next()){
+                Country curr_country = new Country(rset.getString("Code"), rset.getString("Name"),
+                        rset.getString("Continent"),rset.getString("Region"),rset.getDouble("SurfaceArea"),
+                            rset.getInt("IndepYear"), rset.getInt("Population"), rset.getDouble("LifeExpectancy"),
+                                rset.getDouble("GNP"), rset.getDouble("GNPOld"), rset.getString("LocalName"),
+                                    rset.getString("GovernmentForm"), rset.getString("HeadOfState"),
+                                            rset.getInt("Capital"), rset.getString("Code2"));
+                countries.add(curr_country);
+            }
+
+        } catch (Exception e){
+            return null;
+        }
+        return countries;
+    }
+
     public List<City> getAllCities(){
         List<City> cities = new ArrayList<>();
         try{
