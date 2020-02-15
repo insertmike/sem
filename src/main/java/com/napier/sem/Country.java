@@ -1,7 +1,13 @@
 package com.napier.sem;
 
 /**
- * Represents the Country Class
+ * <h1>Country Class</h1>
+ * Represents the Country class
+ *
+ * @author Daniela Todorova
+ * @author Miguel Bacharov
+ * @author Mihail Yonchev
+ * @author Valeri Vladimirov
  */
 public class Country {
     private final String ISO3Code;
