@@ -1,49 +1,53 @@
-# USE CASE: 8 Delete an employee's details
+# USE CASE: 8 All the cities in a continent organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an HR advisor I want to delete an employee's details so that the company is compliant with data retention legislation.
+As a Developer I want to produce a report of all the cities in a continent organised by largest population to smallest.
+So that I can see which countries are in the top N of the most populated in a continent.
 
-### Scope
+---
 
-Company.
+### Scope </h3> Organisation
 
-### Level
+---
 
-Primary task.
+### Level </h3> Primary task
 
-### Preconditions
+---
 
-We know the employee's details to delete. Database contains current employee details.
+### Preconditions </h3> Database contains all of the country data.
 
-### Success End Condition
+---
 
-The employee's details are deleted.
+### Success End Condition </h3> A report is available for the organisation.
 
-### Failed End Condition
+---
 
-The employee's details remain in the database.
+### Failed End Condition </h3> No report is produced.
 
-### Primary Actor
+---
 
-HR Advisor.
+### Primary Actor </h3> Organisation.
 
-### Trigger
+---
 
-An employee's details need to be deleted.
+### Trigger </h3> A request for country information of all cities in the continent in descending order by population to sent to organisation.
+
+---
 
 ## MAIN SUCCESS SCENARIO
 
-1. An employee's details need to be deleted.
-2. HR advisor captures employee's details.
-3. HR advisor deletes employee's details.
+1. Organisation requests city information in the continent (desc. order by population)
+2. Developer extracts current city of the continent information.
+3. Developer provides report to organisation.
+
+---
 
 ## EXTENSIONS
 
-3. **Employee details do not exist**:
-    i. HR advisor doesn't have to do anything. 
+None.
 
 ## SUB-VARIATIONS
 

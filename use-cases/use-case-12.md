@@ -1,44 +1,49 @@
-# USE CASE: 12 Produce a report on all the cities in the world organised by largest population to smallest in the world
+# USE CASE: 12 The top N populated cities in the world where N is provided by the user.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a Developer I want to produce a report of all the cities in the world organised by largest population to smallest so that I can see which city has the largest population in the world.
+As a Developer I want to produce a report of the top N populated cities in the world where N is provided by the user.
+So that I can see which countries are in the top N of the most populated cities in the world.
 
-### Scope
+---
 
-Company
+### Scope </h3> Organisation
 
-### Level
+---
 
-Primary task
+### Level </h3> Primary task
 
-### Preconditions
+---
 
-Database contains all cities in the world organised by largest population to smallest in the world.
+### Preconditions </h3> Database contains all of the country data.
 
-### Success End Condition
+---
 
-A successful report is available on all the cities organised by the given condition in the world.
+### Success End Condition </h3> A report is available for the organisation.
 
-### Failed End Condition
+---
 
-No report is produced.
+### Failed End Condition </h3> No report is produced.
 
-### Primary Actor
+---
 
-Developer.
+### Primary Actor </h3> Organisation.
 
-### Trigger
+---
 
-A report of all cities has been produced.
+### Trigger </h3> A request for country information of the top N cities of the world to be sent to organisation.
+
+---
 
 ## MAIN SUCCESS SCENARIO
 
-1.There is a city information request.
-2.Developer extracts current city information for all cities.
-3.Developer provides report about the cities organised by largest population to smallest in the world.
+1. Organisation requests top N cities by population information of the world.
+2. Developer extracts current top N cities in the world information.
+3. Developer provides report to organisation.
+
+---
 
 ## EXTENSIONS
 

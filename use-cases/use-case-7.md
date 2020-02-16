@@ -1,50 +1,53 @@
-# USE CASE: 7 Update employee's details
+# USE CASE: 7 All the cities in the world organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an HR advisor I want to update an employee's details so that employee's details are kept up-to-date.
+As a Developer I want to produce a report of all the cities in the world organised by largest population to smallest. 
+So that I can see which countries are in the top N of the most populated in a continent.
 
-### Scope
+---
 
-Company.
+### Scope </h3> Organisation
 
-### Level
+---
 
-Primary task.
+### Level </h3> Primary task
 
-### Preconditions
+---
 
-We know the employee's details to update. Database contains current employee details.
+### Preconditions </h3> Database contains all of the country data.
 
-### Success End Condition
+---
 
-The employee's details are updated.
+### Success End Condition </h3> A report is available for the organisation.
 
-### Failed End Condition
+---
 
-The employee's details remain unchaged and are not up to date.
+### Failed End Condition </h3> No report is produced.
 
-### Primary Actor
+---
 
-HR Advisor.
+### Primary Actor </h3> Organisation.
 
-### Trigger
+---
 
-An employee's details need to be updated.
+### Trigger </h3> A request for country information of all cities in the world in descending order by population to sent to organisation.
+
+---
 
 ## MAIN SUCCESS SCENARIO
 
-1. An employee's details have changed.
-2. HR advisor captures employee's new details.
-3. HR advisor gets employee's old details from the database.
-4. HR advisor updates employee's details.
+1. Organisation requests city information in the world (desc. order by population)
+2. Developer extracts current city of the world information.
+3. Developer provides report to organisation.
+
+---
 
 ## EXTENSIONS
 
-3. **Employee details do not exist**:
-    i. HR advisor creates new employee's details.
+None.
 
 ## SUB-VARIATIONS
 

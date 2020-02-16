@@ -1,44 +1,49 @@
-# USE CASE: 10 Produce a report on all the countries in the world organised by largest population to smallest organised by continent
+# USE CASE: 10 All the cities in a country organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a Developer I want to produce a report of all the countries in a continent organised by largest population to smallest so that I can see which country has the biggest population in the continent.
+As a Developer I want to produce a report of all the cities in a country organised by largest population to smallest.
+So that I can see which countries are in the top N of the most populated in a continent.
 
-### Scope
+---
 
-Company
+### Scope </h3> Organisation
 
-### Level
+---
 
-Primary task
+### Level </h3> Primary task
 
-### Preconditions
+---
 
-Database contains all countries in the world organised by largest population to smallest organised by continent.
+### Preconditions </h3> Database contains all of the country data.
 
-### Success End Condition
+---
 
-A successful report is available on all the countries organised by the given condition organised by continent.
+### Success End Condition </h3> A report is available for the organisation.
 
-### Failed End Condition
+---
 
-No report is produced.
+### Failed End Condition </h3> No report is produced.
 
-### Primary Actor
+---
 
-Developer.
+### Primary Actor </h3> Organisation.
 
-### Trigger
+---
 
-A report of all countries has been produced.
+### Trigger </h3> A request for country information of all cities in a country in desc. order by population to sent to organisation.
+
+---
 
 ## MAIN SUCCESS SCENARIO
 
-1.There is a country information request.
-2.Developer extracts current country information for all countries.
-3.Developer provides report about the countries organised by largest population to smallest organised by continent.
+1. Organisation requests city information in the country (desc. order by population)
+2. Developer extracts current city of the country information.
+3. Developer provides report to organisation.
+
+---
 
 ## EXTENSIONS
 

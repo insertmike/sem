@@ -1,11 +1,11 @@
-# USE CASE: 15 The top N populated cities in a country where N is provided by the user.
+# USE CASE: 22 The top N populated capital cities in a region where N is provided by the user.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a Developer I want to produce a report of the top N populated cities in a country where N is provided by the user.
-So that I can see which countries are in the top N of the most populated cities in a country.
+As a Developer I want to produce a report of the top N populated capital cities in a region where N is provided by the user.
+So that I can see top N populated capital cities in a region.
 
 ---
 
@@ -33,14 +33,14 @@ So that I can see which countries are in the top N of the most populated cities 
 
 ---
 
-### Trigger </h3> A request for the top N cities of a region to be sent to organisation.
+### Trigger </h3> A request for the top N capital cities of the region to be sent to organisation.
 
 ---
 
 ## MAIN SUCCESS SCENARIO
 
-1. Organisation requests top N cities by population information of a country.
-2. Developer extracts current top N cities of a country information.
+1. Organisation requests for the top N capital cities of the region information.
+2. Developer extracts current top N capital cities of the region information.
 3. Developer provides report to organisation.
 
 ---

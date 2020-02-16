@@ -1,44 +1,49 @@
-# USE CASE: 11 Produce a report on all the countries in the world organised by largest population to smallest organised by region
+# USE CASE: 11 All the cities in a district organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a Developer I want to produce a report on all the countries in a region organised by largest population to smallest so that I can see which country has the largest population in the region.
+As a Developer I want to produce a report of all the cities in a district organised by largest population to smallest.
+So that I can see all of the cities in a district ordered by population.
 
-### Scope
+---
 
-Company
+### Scope </h3> Organisation
 
-### Level
+---
 
-Primary task
+### Level </h3> Primary task
 
-### Preconditions
+---
 
-Database contains all countries in the world organised by largest population to smallest organised by region.
+### Preconditions </h3> Database contains all of the country data.
 
-### Success End Condition
+---
 
-A successful report is available on all the countries organised by the given condition organised by region.
+### Success End Condition </h3> A report is available for the organisation.
 
-### Failed End Condition
+---
 
-No report is produced.
+### Failed End Condition </h3> No report is produced.
 
-### Primary Actor
+---
 
-Developer.
+### Primary Actor </h3> Organisation.
 
-### Trigger
+---
 
-A report of all countries has been produced.
+### Trigger </h3> A request for country information of all cities in a district in ordered by population (desc.) to be sent to organisation.
+
+---
 
 ## MAIN SUCCESS SCENARIO
 
-1.There is a country information request.
-2.Developer extracts current country information for all countries.
-3.Developer provides report about the countries organised by largest population to smallest organised by region.
+1. Organisation requests city by population information of a district.
+2. Developer extracts current city in the district information.
+3. Developer provides report to organisation.
+
+---
 
 ## EXTENSIONS
 

@@ -1,50 +1,54 @@
-# USE CASE: 2 Produce salary report of a given department
+# USE CASE: 2 All the countries in a continent organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an HR advisor I want to produce a report on the salary of employees in a department so that I can support financial reporting of the organisation.
+As a Developer I want to produce a report of all the countries in a continent 
+organised by largest population to smallest so that I can see which country has 
+the biggest population in the continent.
 
-### Scope
+---
 
-Company
+### Scope </h3> Organisation
 
-### Level
+---
 
-Primary task
+### Level </h3> Primary task
 
-### Preconditions
+---
 
-We know the department. Database contains current employee salary data.
+### Preconditions </h3> Database contains all of the country data.
 
-### Success End Condition
+---
 
-A report is available for HR to provide to finance.
+### Success End Condition </h3> A report is available for the organisation.
 
-### Failed End Condition
+---
 
-No report is produced.
+### Failed End Condition </h3> No report is produced.
 
-### Primary Actor
+---
 
-HR advisor.
+### Primary Actor </h3> Organisation.
 
-### Trigger
+---
 
-A request for finance information is sent to HR.
+### Trigger </h3> A request for country information by continent in descending order by population to sent to organisation.
+
+---
 
 ## MAIN SUCCESS SCENARIO
 
-1. Finance requests salary information for employees from a department.
-2.HR advisor captures name of the department to get salary information from.
-3.HR advisor extracts current salary information for given department.
-4.HR advisor provides report to finance.
+1. Organisation requests country information for a continent (desc. order by population)
+2. Developer extracts current country information.
+3. Developer provides report to organisation.
+
+---
 
 ## EXTENSIONS
 
-3.**Department does not exist**:
-    i.HR advisor informs finance no department exists.
+None.
 
 ## SUB-VARIATIONS
 

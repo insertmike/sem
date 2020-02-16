@@ -1,50 +1,53 @@
-# USE CASE: 5 Add new employee's details
+# USE CASE: 5 The top N populated countries in a continent where N is provided by the user.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an HR advisor I want to add a new employee's details so that I can ensure the new employee is paid.
+As a Developer I want to produce a report the top N populated countries in a continent where N is provided by the user.
+So that I can see which countries are in the top N of the most populated in a continent.
 
-### Scope
+---
 
-Company.
+### Scope </h3> Organisation
 
-### Level
+---
 
-Primary task.
+### Level </h3> Primary task
 
-### Preconditions
+---
 
-We have the new employee's details. Database allows to add new employee's details.
+### Preconditions </h3> Database contains all of the country data.
 
-### Success End Condition
+---
 
-Employee's details are added therefor he can be paid.
+### Success End Condition </h3> A report is available for the organisation.
 
-### Failed End Condition
+---
 
-Employee's details are not added.
+### Failed End Condition </h3> No report is produced.
 
-### Primary Actor
+---
 
-HR Advisor.
+### Primary Actor </h3> Organisation.
 
-### Trigger
+---
 
-A new employee is hired.
+### Trigger </h3> A request for country information by top in descending order by population by continent to sent to organisation.
+
+---
 
 ## MAIN SUCCESS SCENARIO
 
-1. A new employee is hired.
-2. HR advisor captures name of the role to get salary information for.
-3. HR advisor extracts current salary information of all employees of the given role.
-4. HR advisor provides report to finance.
+1. Organisation requests country information of top N in a continent (desc. order by population)
+2. Developer extracts current country information.
+3. Developer provides report to organisation.
+
+---
 
 ## EXTENSIONS
 
-3. **Role does not exist**:
-    i. HR advisor informs finance no role exists.
+None.
 
 ## SUB-VARIATIONS
 

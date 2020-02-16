@@ -1,51 +1,53 @@
-# USE CASE: 6 View employee's details and promote employee
+# USE CASE: 6 The top N populated countries in a region where N is provided by the user.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an HR advisor I want to view and employee's details so that the employee's promotion request can be supported.
+As a Developer I want to produce a report the top N populated countries in a region where N is provided by the user.
+So that I can see which countries are in the top N of the most populated in a continent.
 
-### Scope
+---
 
-Company.
+### Scope </h3> Organisation
 
-### Level
+---
 
-Primary task.
+### Level </h3> Primary task
 
-### Preconditions
+---
 
-We know the employee's details. Database contains employee's details.
+### Preconditions </h3> Database contains all of the country data.
 
-### Success End Condition
+---
 
-The details are available for the HR advisor to request promotion.
+### Success End Condition </h3> A report is available for the organisation.
 
-### Failed End Condition
+---
 
-No details are shown, therefor no promotion is requested.
+### Failed End Condition </h3> No report is produced.
 
-### Primary Actor
+---
 
-HR Advisor.
+### Primary Actor </h3> Organisation.
 
-### Trigger
+---
 
-A request from an employee is sent to HR.
+### Trigger </h3> A request for country information by top in descending order by population by region to sent to organisation.
+
+---
 
 ## MAIN SUCCESS SCENARIO
 
-1. A certain employee requests a promotion to the HR.
-2. HR advisor captures details of the employee.
-3. HR advisor views employee details on database.
-4. HR advisor requests promotion for employee.
+1. Organisation requests country population information of top N in a region (desc. order by population)
+2. Developer extracts current country top N populated information.
+3. Developer provides report to organisation.
+
+---
 
 ## EXTENSIONS
 
-3. **Employee details do not exist**:
-    i. HR advisor can't request promotion.
-
+None.
 
 ## SUB-VARIATIONS
 
