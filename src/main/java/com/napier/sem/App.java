@@ -20,7 +20,7 @@ public class App
     /**
      * This is the main method
      * @param args Unused.
-     * @return Nothing.
+     * @return Nothing
      */
     public static void main(String[] args)
     {
@@ -48,7 +48,18 @@ public class App
 
         System.out.println("Total countries: " + allCountries.size());
 
-        System.out.println("First country in the list: " + allCountries.get(0).toString());
+        Country firstCountryInList = allCountries.get(0);
+
+        System.out.println("First country in the list: " + firstCountryInList.toString());
+
+        System.out.println("City by largest population for: " + firstCountryInList.getName());
+
+        List<City> cityReport = a.getCitiesByLargestPopulationInCountry(firstCountryInList);
+
+        for (City curr:
+             cityReport) {
+            System.out.println(curr);
+        }
         
         // Disconnect from database
         a.disconnect();
@@ -119,6 +130,37 @@ public class App
                 System.out.println("Error closing connection to database");
             }
         }
+    }
+
+    /**
+     * All the cities from MySQL world database in the region of @param country organised by largest population
+     * @param country The region we aiming
+     * @return ArrayList<City>
+     */
+    public List<City> getCitiesByLargestPopulationInCountry(Country country){
+        List<City> cities = new ArrayList<>();
+        String countryCode = country.getISO3Code();
+        try{
+
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * FROM city WHERE city.CountryCode = '" + countryCode + "' ORDER BY city.Population DESC;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while(rset.next()){
+                City curr_city = new City(rset.getInt("ID"), rset.getString("Name"),  rset.getString("CountryCode"),rset.getString("District"),rset.getInt("Population"));
+                cities.add(curr_city);
+            }
+
+        } catch (Exception e){
+            return null;
+        }
+        return cities;
     }
 
     /**
