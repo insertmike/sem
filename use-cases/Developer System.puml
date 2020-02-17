@@ -67,7 +67,7 @@ rectangle "Developer System" {
       and people not living in cities in each continent."
     usecase UC24 as "The population of people, people living in cities,
       and people not living in cities in each region."
-    usecase UC25 as "The population of people, people living in cities,
+    usecase uc25 as "the population of people, people living in cities,
       and people not living in cities in each country."
 
 '   Other Report(s)
