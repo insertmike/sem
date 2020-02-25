@@ -59,6 +59,16 @@ public class App
         // The population of city Varna
         System.out.println("The population of city: " + allCities.get(540).getName() + " is " + allCities.get(540).getPopulation());
 
+        // The population of district Varna
+        int citiesNumber = 0;
+        int totalPopulation = 0;
+        for(City city1: allCities){
+            if(city1.getDistrict().equals("Varna")){
+                totalPopulation += city1.getPopulation();
+                citiesNumber++;
+            }
+        }
+        System.out.println("The population of district: " + allCities.get(540).getDistrict() + " is " + totalPopulation + ", number of cities is " + citiesNumber);
 
 
         for (City curr:
@@ -267,7 +277,7 @@ public class App
             return null;
         }
     }
-    
+
     /** Method for Displaying Target Data
      * @param city The city to be displayed
      * @return Nothing
