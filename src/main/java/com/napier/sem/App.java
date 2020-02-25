@@ -56,6 +56,11 @@ public class App
 
         List<City> cityReport = a.getCitiesByLargestPopulationInCountry(firstCountryInList);
 
+        // The population of city Varna
+        System.out.println("The population of city: " + allCities.get(540).getName() + " is " + allCities.get(540).getPopulation());
+
+
+
         for (City curr:
              cityReport) {
             System.out.println(curr);
