@@ -82,6 +82,22 @@ public class App
         }
         System.out.println("The population of region: " + allCountries.get(22).getRegion() + " is " + totalPopulationRegion);
 
+        // The population of a continent Asia
+        long totalPopulationContinent = 0;
+        for(Country country1: allCountries){
+            if(country1.getContinent().equals("Asia")){
+                totalPopulationContinent += country1.getPopulation();
+            }
+        }
+        System.out.println("The population of continent: " + allCountries.get(1).getContinent() + " is " + totalPopulationContinent);
+
+        // The population of the world
+        long totalPopulationWorld = 0;
+        for(Country country1: allCountries){
+            totalPopulationWorld += country1.getPopulation();
+        }
+        System.out.println("The population of the world is: " + totalPopulationWorld);
+
         for (City curr:
              cityReport) {
             System.out.println(curr);
