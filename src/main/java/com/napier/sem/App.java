@@ -111,6 +111,28 @@ public class App
             break; // Removing the break will display for all countries. Break is added to limit data displayed so that we don't scroll 2 hours.
         }
 
+        // Population of people, people in cities and people not in cities in each region
+        ArrayList<String> regions = new ArrayList<String>();
+        for(Country country1: allCountries){
+            if(!regions.contains(country1.getRegion())){
+                long populationRegion = 0;
+                long populationInCity = 0;
+                for (Country country2 : allCountries) {
+                    if (country1.getRegion().equals(country2.getRegion())) {
+                        populationRegion += country2.getPopulation();
+                        for (City city1 : allCities) {
+                            if (city1.getCountry_code().equals(country2.getISO3Code())) {
+                                populationInCity += city1.getPopulation();
+                            }
+                        }
+                    }
+                }
+                System.out.println("Population of people in " + country1.getRegion() + " is " + populationRegion
+                        + ". People living in cities are " + populationInCity + ". People not living in cities are " + (populationRegion - populationInCity) + ".");
+                regions.add(country1.getRegion());
+            }
+            break; // Removing the break will display for all countries. Break is added to limit data displayed so that we don't scroll 2 hours.
+        }
 
         for (City curr:
              cityReport) {
