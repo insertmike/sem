@@ -98,6 +98,20 @@ public class App
         }
         System.out.println("The population of the world is: " + totalPopulationWorld);
 
+        // Population of people, people in cities and people not in cities in each country
+        for(Country country1: allCountries){
+            long populationInCity = 0;
+            for(City city1: allCities){
+                if(city1.getCountry_code().equals(country1.getISO3Code())){
+                    populationInCity += city1.getPopulation();
+                }
+            }
+            System.out.println("Population of people in " + country1.getName() + " is " + country1.getPopulation()
+                    + ". People living in cities are " + populationInCity + ". People not living in cities are " + (country1.getPopulation() - populationInCity) + ".");
+            break; // Removing the break will display for all countries. Break is added to limit data displayed so that we don't scroll 2 hours.
+        }
+
+
         for (City curr:
              cityReport) {
             System.out.println(curr);
