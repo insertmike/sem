@@ -73,6 +73,15 @@ public class App
         // The population of country Bulgaria
         System.out.println("The population of country: " + allCountries.get(22).getName() + " is " + allCountries.get(22).getPopulation());
 
+        // The population of region Eastern Europe
+        int totalPopulationRegion = 0;
+        for(Country country1: allCountries){
+            if(country1.getRegion().equals("Eastern Europe")){
+                totalPopulationRegion += country1.getPopulation();
+            }
+        }
+        System.out.println("The population of region: " + allCountries.get(22).getRegion() + " is " + totalPopulationRegion);
+
         for (City curr:
              cityReport) {
             System.out.println(curr);
