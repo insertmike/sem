@@ -70,6 +70,8 @@ public class App
         }
         System.out.println("The population of district: " + allCities.get(540).getDistrict() + " is " + totalPopulation + ", number of cities is " + citiesNumber);
 
+        // The population of country Bulgaria
+        System.out.println("The population of country: " + allCountries.get(22).getName() + " is " + allCountries.get(22).getPopulation());
 
         for (City curr:
              cityReport) {
