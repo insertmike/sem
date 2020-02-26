@@ -32,6 +32,25 @@ More Information on Coursework can be found [here](https://github.com/Kevin-Sim/
 
 ---
 
+
+### Reports
+
+---
+
+| ID  | Name          | Met           | Screenshot     |
+  | ---|:-------------:| -------------:| --------------:|
+  | 1  | Generate report with the population of a city |          Yes |       ![pic](./img/1.png)     |
+  | 2  | Generate report with the population of a district |          Yes |           ![pic](./img/2.png) |
+  | 3  | Generate report with the population of a country|          Yes |           ![pic](./img/3.png) |
+  | 4  | Generate report with the population of a region |          Yes |           ![pic](./img/4.png) |
+  | 5  | Generate report with the population of a continent |          Yes |           ![pic](./img/5.png)|
+  | 6  | Generate report with the population of the world |          Yes |           ![pic](./img/6.png) |
+  | 7  | Generate report with the population of people, people living in cities, and people not living in cities in each country |          Yes |           ![pic](./img/7.png) |
+  | 8  | Generate report with the population of people, people living in cities, and people not living in cities in each region |          Yes |           ![pic](./img/8.png) |
+  | 9  | Generate report with the population of people, people living in cities, and people not living in cities in each continent |          Yes |           ![pic](./img/9.png) |
+  
+  ---
+
 ### Connecting to the MySQL Container (Step-by-step) guide:
 
 1. Pull/Fetch the latest master-branch version of the coursework.
