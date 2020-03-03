@@ -82,6 +82,81 @@ public class App
         }
         System.out.println("The population of region: " + allCountries.get(22).getRegion() + " is " + totalPopulationRegion);
 
+        // The population of a continent Asia
+        long totalPopulationContinent = 0;
+        for(Country country1: allCountries){
+            if(country1.getContinent().equals("Asia")){
+                totalPopulationContinent += country1.getPopulation();
+            }
+        }
+        System.out.println("The population of continent: " + allCountries.get(1).getContinent() + " is " + totalPopulationContinent);
+
+        // The population of the world
+        long totalPopulationWorld = 0;
+        for(Country country1: allCountries){
+            totalPopulationWorld += country1.getPopulation();
+        }
+        System.out.println("The population of the world is: " + totalPopulationWorld);
+
+        // Population of people, people in cities and people not in cities in each country
+        for(Country country1: allCountries){
+            long populationInCity = 0;
+            for(City city1: allCities){
+                if(city1.getCountry_code().equals(country1.getISO3Code())){
+                    populationInCity += city1.getPopulation();
+                }
+            }
+            System.out.println("Population of people in " + country1.getName() + " is " + country1.getPopulation()
+                    + ". People living in cities are " + populationInCity + ". People not living in cities are " + (country1.getPopulation() - populationInCity) + ".");
+            break; // Removing the break will display for all countries. Break is added to limit data displayed so that we don't scroll 2 hours.
+        }
+
+        // Population of people, people in cities and people not in cities in each region
+        ArrayList<String> regions = new ArrayList<String>();
+        for(Country country1: allCountries){
+            if(!regions.contains(country1.getRegion())){
+                long populationRegion = 0;
+                long populationInCity = 0;
+                for (Country country2 : allCountries) {
+                    if (country1.getRegion().equals(country2.getRegion())) {
+                        populationRegion += country2.getPopulation();
+                        for (City city1 : allCities) {
+                            if (city1.getCountry_code().equals(country2.getISO3Code())) {
+                                populationInCity += city1.getPopulation();
+                            }
+                        }
+                    }
+                }
+                System.out.println("Population of people in " + country1.getRegion() + " is " + populationRegion
+                        + ". People living in cities are " + populationInCity + ". People not living in cities are " + (populationRegion - populationInCity) + ".");
+                regions.add(country1.getRegion());
+            }
+            break; // Removing the break will display for all countries. Break is added to limit data displayed so that we don't scroll 2 hours.
+        }
+
+        // Population of people, people in cities and people not in cities in each continent
+        ArrayList<String> continents = new ArrayList<String>();
+        for(Country country1: allCountries){
+            if(!continents.contains(country1.getContinent())){
+                long populationContinent = 0;
+                long populationInCity = 0;
+                for (Country country2 : allCountries) {
+                    if (country1.getContinent().equals(country2.getContinent())) {
+                        populationContinent += country2.getPopulation();
+                        for (City city1 : allCities) {
+                            if (city1.getCountry_code().equals(country2.getISO3Code())) {
+                                populationInCity += city1.getPopulation();
+                            }
+                        }
+                    }
+                }
+                System.out.println("Population of people in " + country1.getContinent() + " is " + populationContinent
+                        + ". People living in cities are " + populationInCity + ". People not living in cities are " + (populationContinent - populationInCity) + ".");
+                continents.add(country1.getContinent());
+            }
+            break; // Removing the break will display for all countries. Break is added to limit data displayed so that we don't scroll 2 hours.
+        }
+
         for (City curr:
              cityReport) {
             System.out.println(curr);
