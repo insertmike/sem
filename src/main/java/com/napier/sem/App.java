@@ -165,7 +165,48 @@ public class App
 
 
         // LANGUAGES
+        long numberOfPeopleChinese = 0;
+        long numberOfPeopleEnglish = 0;
+        long numberOfPeopleArabic = 0;
+        long numberOfPeopleHindi = 0;
+        long numberOfPeopleSpanish = 0;
 
+        // Getting the number of people speaking the given language
+        for(Country count : allCountries){
+            for(Language lang: allLanguages) {
+                if(count.getISO3Code().equals(lang.getCountryCode())){
+                    if(lang.getLanguageName().equals("Chinese")){
+                        numberOfPeopleChinese = numberOfPeopleChinese + (long) (count.getPopulation() * lang.getPercentage() / 100);
+                    }
+                    else if(lang.getLanguageName().equals("English")){
+                        numberOfPeopleEnglish = numberOfPeopleEnglish + (long) (count.getPopulation() * lang.getPercentage() / 100);
+                    }
+                    else if(lang.getLanguageName().equals("Hindi")){
+                        numberOfPeopleHindi = numberOfPeopleHindi + (long) (count.getPopulation() * lang.getPercentage() / 100);
+                    }
+                    else if(lang.getLanguageName().equals("Arabic")){
+                        numberOfPeopleArabic = numberOfPeopleArabic + (long) (count.getPopulation() * lang.getPercentage() / 100);
+                    }
+                    else if(lang.getLanguageName().equals("Spanish")){
+                        numberOfPeopleSpanish = numberOfPeopleSpanish + (long) (count.getPopulation() * lang.getPercentage() / 100);
+                    }
+                }
+            }
+        }
+
+        // Calculating the percentage of the speakers
+        double percentageChinese = numberOfPeopleChinese * 100.0 / totalPopulationWorld;
+        double percentageEnglish = numberOfPeopleEnglish * 100.0 / totalPopulationWorld;
+        double percentageHindi = numberOfPeopleHindi * 100.0 / totalPopulationWorld;
+        double percentageSpanish = numberOfPeopleSpanish * 100.0 / totalPopulationWorld;
+        double percentageArabic =  numberOfPeopleArabic * 100.0 / totalPopulationWorld;
+
+        // Printing all the speakers for the given languages
+        System.out.println("People speaking Chinese: " + numberOfPeopleChinese + ", Percentage: " + String.format("%.2f", percentageChinese) + "%");
+        System.out.println("People speaking English: " + numberOfPeopleEnglish + ", Percentage: " + String.format("%.2f", percentageEnglish) + "%");
+        System.out.println("People speaking Hindi: " + numberOfPeopleHindi + ", Percentage: " + String.format("%.2f", percentageHindi) + "%");
+        System.out.println("People speaking Spanish: " + numberOfPeopleSpanish + ", Percentage: " + String.format("%.2f", percentageSpanish) + "%");
+        System.out.println("People speaking Arabic: " + numberOfPeopleArabic + ", Percentage: " + String.format("%.2f", percentageArabic) + "%");
 
 
         for (City curr:
