@@ -208,7 +208,6 @@ public class App
         System.out.println("People speaking Spanish: " + numberOfPeopleSpanish + ", Percentage: " + String.format("%.2f", percentageSpanish) + "%");
         System.out.println("People speaking Arabic: " + numberOfPeopleArabic + ", Percentage: " + String.format("%.2f", percentageArabic) + "%");
 
-
         for (City curr:
                 cityReport) {
             System.out.println(curr);
