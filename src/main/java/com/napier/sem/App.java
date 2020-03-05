@@ -46,6 +46,10 @@ public class App
         // Get all countries
         List<Country> allCountries = a.getAllCountries();
 
+        // Get all Languages
+        List<Language> allLanguages = a.getAllLanguages();
+        System.out.println("First language " + allLanguages.get(0));
+
         System.out.println("Total countries: " + allCountries.size());
 
         Country firstCountryInList = allCountries.get(0);
@@ -157,11 +161,18 @@ public class App
             break; // Removing the break will display for all countries. Break is added to limit data displayed so that we don't scroll 2 hours.
         }
 
+
+
+
+        // LANGUAGES
+
+
+
         for (City curr:
-             cityReport) {
+                cityReport) {
             System.out.println(curr);
         }
-        
+
         // Disconnect from database
         a.disconnect();
     }
@@ -285,10 +296,10 @@ public class App
             while(rset.next()){
                 Country curr_country = new Country(rset.getString("Code"), rset.getString("Name"),
                         rset.getString("Continent"),rset.getString("Region"),rset.getDouble("SurfaceArea"),
-                            rset.getInt("IndepYear"), rset.getInt("Population"), rset.getDouble("LifeExpectancy"),
-                                rset.getDouble("GNP"), rset.getDouble("GNPOld"), rset.getString("LocalName"),
-                                    rset.getString("GovernmentForm"), rset.getString("HeadOfState"),
-                                            rset.getInt("Capital"), rset.getString("Code2"));
+                        rset.getInt("IndepYear"), rset.getInt("Population"), rset.getDouble("LifeExpectancy"),
+                        rset.getDouble("GNP"), rset.getDouble("GNPOld"), rset.getString("LocalName"),
+                        rset.getString("GovernmentForm"), rset.getString("HeadOfState"),
+                        rset.getInt("Capital"), rset.getString("Code2"));
                 countries.add(curr_country);
             }
 
@@ -325,6 +336,35 @@ public class App
             return null;
         }
         return cities;
+    }
+
+    /**
+     * All languages from MySQL world database stored in ArrayList data structure.
+     * @return ArrayList<Language>
+     */
+    public List<Language> getAllLanguages(){
+        List<Language> languages = new ArrayList<>();
+        try{
+
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * FROM countrylanguage";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while(rset.next()){
+                Language curr_language = new Language(rset.getString("CountryCode"), rset.getString("Language"),  rset.getBoolean("IsOfficial"), rset.getFloat("Percentage"));
+                languages.add(curr_language);
+            }
+
+        } catch (Exception e){
+            return null;
+        }
+        return languages;
     }
 
     /** Method GET Target City Data:
