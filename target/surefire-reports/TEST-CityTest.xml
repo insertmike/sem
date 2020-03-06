@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="CityTest" time="0.018" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="CityTest" time="0.017" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="13.0.2+8"/>
@@ -57,10 +57,10 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="getDistrict" classname="CityTest" time="0.009"/>
+  <testcase name="getDistrict" classname="CityTest" time="0.008"/>
   <testcase name="getCountry_code" classname="CityTest" time="0"/>
   <testcase name="getName" classname="CityTest" time="0"/>
   <testcase name="getId" classname="CityTest" time="0"/>
-  <testcase name="toStringTest" classname="CityTest" time="0.001"/>
-  <testcase name="getPopulation" classname="CityTest" time="0.001"/>
+  <testcase name="toStringTest" classname="CityTest" time="0"/>
+  <testcase name="getPopulation" classname="CityTest" time="0.002"/>
 </testsuite>
