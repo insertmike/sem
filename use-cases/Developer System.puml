@@ -1,0 +1,138 @@
+
+@startuml
+
+actor Dev as "Developer"
+
+rectangle Database
+
+rectangle "Developer System" {
+
+'   Countries Report
+
+    usecase UC1 as "Get countries by largest
+     population to smallest in the world"
+    usecase UC2 as "Get countries by largest
+     population to smallest in the continent"
+    usecase UC3 as "Get countries by largest
+     population to smallest in the region"
+    usecase UC4 as "The top N populated countries
+     in the world where N is provided by the user."
+    usecase UC5 as "The top N populated countries in
+     a continent where N is provided by the user."
+    usecase UC6 as "The top N populated countries in a
+     region where N is provided by the user."
+
+'    Cities Report
+
+    usecase UC7 as "Get cities by largest
+     population to smallest in the world"
+    usecase UC8 as "Get cities by larges
+    t population to smallest in the continent"
+    usecase UC9 as "Get cities by largest population
+     to smallest in the region"
+    usecase UC10 as "Get the cities in a country organised
+     by largest population to smallest."
+    usecase UC11 as "Get cities by largest population
+     to smallest in the district"
+
+    usecase UC12 as "The top N populated cities in the
+     world where N is provided by the user."
+    usecase UC13 as "The top N populated cities in a
+     continent where N is provided by the user."
+    usecase UC14 as "The top N populated cities in a
+     region where N is provided by the user."
+    usecase UC15 as "The top N populated cities in a
+     country where N is provided by the user."
+    usecase UC16 as "The top N populated cities in a
+     district where N is provided by the user."
+
+'   Capital Cities Report
+
+    usecase UC17 as "All the capital cities in the
+     world organised by largest population to smallest."
+    usecase UC18 as "All the capital cities in a continent
+     organised by largest population to smallest."
+    usecase UC19 as "All the capital cities in a region
+     organised by largest to smallest."
+    usecase UC20 as "The top N populated capital cities in
+     the world where N is provided by the user."
+    usecase UC21 as "The top N populated capital cities in
+      a continent where N is provided by the user."
+    usecase UC22 as "The top N populated capital cities in
+      a region where N is provided by the user."
+
+'   Population Report
+
+    usecase UC23 as "The population of people, people living in cities,
+      and people not living in cities in each continent."
+    usecase UC24 as "The population of people, people living in cities,
+      and people not living in cities in each region."
+    usecase uc25 as "the population of people, people living in cities,
+      and people not living in cities in each country."
+
+'   Other Report(s)
+
+    usecase UC26 as "The population of the world."
+    usecase UC27 as "The population of a continent."
+    usecase UC28 as "The population of a region."
+    usecase UC29 as "The population of a country."
+    usecase UC30 as "The population of a district."
+    usecase UC31 as "The population of a city."
+
+    usecase UC32 as "Number of people and world population that speak Chinese"
+    usecase UC33 as "Number of people and world population that speak English"
+    usecase UC34 as "Number of people and world population that speak Hindi"
+    usecase UC35 as "Number of people and world population that speak Spanish"
+    usecase UC36 as "Number of people and world population that speak Arabic"
+
+    usecase UCa as "Create Report"
+
+    Dev - UC1
+    UC1 - UC2
+    UC2 - UC3
+    UC3 - UC4
+    UC4 - UC5
+    UC5 - UC6
+    UC6 - UC7
+    UC7 - UC8
+    UC9 - UC9
+    UC9 - UC10
+    UC10 - UC11
+    UC11 - UC12
+    UC12 - UC13
+    UC13 - UC14
+    UC14 - UC15
+    UC15 - UC16
+    UC16 - UC17
+    UC17 - UC18
+    UC18 - UC19
+    UC19 - UC20
+    UC20 - UC21
+    UC21 - UC22
+    UC22 - UC23
+    UC23 - UC24
+    UC24 - UC25
+    UC25 - UC26
+    UC26 - UC27
+    UC27 - UC28
+    UC28 - UC29
+    UC29 - UC30
+    UC30 - UC31
+    UC31 - UC32
+    UC32 - UC33
+    UC33 - UC34
+    UC35 - UC36
+
+'   Needs Upating
+
+    UC9 ..> UCa : include
+    UC10 ..> UCa : include
+    UC11 ..> UCa : include
+    UC12 ..> UCa : include
+    UC13 ..> UCa : include
+    UC14 ..> UCa : include
+    UC15 ..> UCa : include
+    UC15 - Database
+}
+
+@enduml
