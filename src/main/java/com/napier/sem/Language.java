@@ -11,15 +11,22 @@ package com.napier.sem;
  */
 
 public class Language {
+    private String countryCode;
     private String languageName;
     private boolean isOfficial;
     private float percentage;
 
-    public Language(String languageName, boolean isOfficial, float percentage) {
+    public Language(String countryCode, String languageName, boolean isOfficial, float percentage) {
+        this.countryCode = countryCode;
         this.languageName = languageName;
         this.isOfficial = isOfficial;
         this.percentage = percentage;
     }
+
+    /**
+     * @return The language name
+     */
+    public String getCountryCode() {return countryCode; }
 
     /**
      * @return The language name
