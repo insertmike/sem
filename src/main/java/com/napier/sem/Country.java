@@ -73,7 +73,7 @@ public class Country {
     /**
      * @return The surface area of the country
      */
-    public Double getSurfaceArea() {
+    public double getSurfaceArea() {
         return surfaceArea;
     }
 

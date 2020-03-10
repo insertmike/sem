@@ -48,7 +48,11 @@ More Information on Coursework can be found [here](https://github.com/Kevin-Sim/
   | 7  | Generate report with the population of people, people living in cities, and people not living in cities in each country |          Yes |           ![pic](./img/7.png) |
   | 8  | Generate report with the population of people, people living in cities, and people not living in cities in each region |          Yes |           ![pic](./img/8.png) |
   | 9  | Generate report with the population of people, people living in cities, and people not living in cities in each continent |          Yes |           ![pic](./img/9.png) |
-  
+  | 10  | Generate report with the the number of people who speak English |          Yes |           ![pic](./img/10.png) |
+  | 11  | Generate report with the the number of people who speak Hindi |          Yes |           ![pic](./img/11.png) |
+  | 12 | Generate report with the the number of people who speak Spanish |          Yes |           ![pic](./img/12.png) |
+  | 13  | Generate report with the the number of people who speak Chinese |          Yes |           ![pic](./img/13.png) |
+  | 14  | Generate report with the the number of people who speak Arabic |          Yes |           ![pic](./img/14.png) |
   ---
 
 ### Connecting to the MySQL Container (Step-by-step) guide:
