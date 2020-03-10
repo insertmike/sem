@@ -1,3 +1,5 @@
+package com.napier.sem;
+
 import com.napier.sem.Country;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;

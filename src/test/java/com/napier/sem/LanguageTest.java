@@ -1,3 +1,5 @@
+package com.napier.sem;
+
 import com.napier.sem.City;
 import com.napier.sem.Language;
 import org.junit.jupiter.api.*;
