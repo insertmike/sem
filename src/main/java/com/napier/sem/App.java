@@ -15,19 +15,19 @@ import java.util.List;
  * @version 0.1.0.4
  * @since   2020-08-02
  */
-public class App
-{
+
+public class App {
+
     /**
      * This is the main method
      * @param args Unused.
      */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // Create new Application
         App a = new App();
 
         // Connect to database
-        a.connect();
+        a.connect("localhost:33060");
 
         // Get Target City Record
         City city = a.getCity(1);
@@ -102,8 +102,7 @@ public class App
         a.disconnect();
     }
 
-
-    public long getNumberOfPeopleLivingInVillagesForCountry(String countryName) throws Exception{
+    public long getNumberOfPeopleLivingInVillagesForCountry(String countryName) throws Exception {
         if(countryName == null){
             throw new IllegalArgumentException("Wrong parameter value type");
         }
@@ -131,7 +130,7 @@ public class App
         return country.getPopulation() - peopleLivingInCities;
     }
 
-    public long getWorldPopulation(){
+    public long getWorldPopulation() {
         List<Country> allCountries = getAllCountries();
         long worldPopulation = 0;
         for(Country currCountry: allCountries){
@@ -140,8 +139,7 @@ public class App
         return worldPopulation;
     }
 
-
-    public long getPopulationOfContinent(String continentName){
+    public long getPopulationOfContinent(String continentName) {
         if(continentName == null){
             throw new IllegalArgumentException("Wrong parameter value type");
         }
@@ -154,6 +152,7 @@ public class App
         }
         throw new IllegalArgumentException("Country not found");
     }
+
     public int getPopulationOfRegion(String regionName) throws IllegalArgumentException{
         if(regionName == null){
             throw new IllegalArgumentException("Wrong parameter value type");
@@ -204,35 +203,29 @@ public class App
      * Connects to the mysql jdbc driver
      * @return Nothing;
      */
-    public void connect()
-    {
-        try
-        {
+    public void connect(String location) {
+        try {
             // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         }
-        catch (ClassNotFoundException e)
-        {
+        catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i)
-        {
-            // Inform of Connectivity Processes
+        for (int i = 0; i < retries; ++i) {
+
             System.out.println("Connecting to database...");
-            try
-            {
+            try {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/employees?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
-            catch (SQLException sqle)
-            {
+            catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
             }
@@ -243,13 +236,11 @@ public class App
         }
     }
 
-
     /**
      * // Disconnect from the MySQL database.
      * @return Nothing;
      */
-    public void disconnect()
-    {
+    public void disconnect() {
         if (con != null)
         {
             try
@@ -269,7 +260,7 @@ public class App
      * @param country The region we aiming
      * @return ArrayList<City>
      */
-    public List<City> getCitiesByLargestPopulationInCountry(Country country){
+    public List<City> getCitiesByLargestPopulationInCountry(Country country) {
         List<City> cities = new ArrayList<>();
         String countryCode = country.getISO3Code();
         try{
@@ -299,7 +290,7 @@ public class App
      * All countries from MySQL world database stored in ArrayList data structure.
      * @return ArrayList<Country>
      */
-    public List<Country> getAllCountries(){
+    public List<Country> getAllCountries() {
         List<Country> countries = new ArrayList<>();
         try{
 
@@ -333,7 +324,7 @@ public class App
      * All cities from MySQL world database stored in ArrayList data structure.
      * @return ArrayList<City>
      */
-    public List<City> getAllCities(){
+    public List<City> getAllCities() {
         List<City> cities = new ArrayList<>();
         try{
 
@@ -362,7 +353,7 @@ public class App
      * All languages from MySQL world database stored in ArrayList data structure.
      * @return ArrayList<Language>
      */
-    public List<Language> getAllLanguages(){
+    public List<Language> getAllLanguages() {
         List<Language> languages = new ArrayList<>();
         try{
 
@@ -390,8 +381,7 @@ public class App
     /** Method GET Target City Data:
      * @return City
      */
-    public City getCity(int ID)
-    {
+    public City getCity(int ID) {
         try
         {
             // Create an SQL statement
@@ -428,8 +418,7 @@ public class App
      * @param city The city to be displayed
      * @return Nothing
      */
-    public void displayCity(City city)
-    {
+    public void displayCity(City city) {
         if (city != null)
         {
             System.out.println(city.toString());
