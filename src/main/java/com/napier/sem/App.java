@@ -34,7 +34,6 @@ public class App {
             a.connect(args[0]);
         }
 
-
         // Get Target City Record
         City city = a.getCity(1);
 
