@@ -20,7 +20,6 @@ public class App
     /**
      * This is the main method
      * @param args Unused.
-     * @return Nothing
      */
     public static void main(String[] args)
     {
@@ -48,6 +47,7 @@ public class App
 
         // Get all Languages
         List<Language> allLanguages = a.getAllLanguages();
+
         System.out.println("First language " + allLanguages.get(0));
 
         System.out.println("Total countries: " + allCountries.size());
@@ -63,162 +63,142 @@ public class App
         // The population of city Varna
         System.out.println("The population of city: " + allCities.get(540).getName() + " is " + allCities.get(540).getPopulation());
 
-        // The population of district Varna
-        int citiesNumber = 0;
-        int totalPopulation = 0;
-        for(City city1: allCities){
-            if(city1.getDistrict().equals("Varna")){
-                totalPopulation += city1.getPopulation();
-                citiesNumber++;
-            }
-        }
-        System.out.println("The population of district: " + allCities.get(540).getDistrict() + " is " + totalPopulation + ", number of cities is " + citiesNumber);
-
-        // The population of country Bulgaria
-        System.out.println("The population of country: " + allCountries.get(22).getName() + " is " + allCountries.get(22).getPopulation());
-
-        // The population of region Eastern Europe
-        int totalPopulationRegion = 0;
-        for(Country country1: allCountries){
-            if(country1.getRegion().equals("Eastern Europe")){
-                totalPopulationRegion += country1.getPopulation();
-            }
-        }
-        System.out.println("The population of region: " + allCountries.get(22).getRegion() + " is " + totalPopulationRegion);
-
-        // The population of a continent Asia
-        long totalPopulationContinent = 0;
-        for(Country country1: allCountries){
-            if(country1.getContinent().equals("Asia")){
-                totalPopulationContinent += country1.getPopulation();
-            }
-        }
-        System.out.println("The population of continent: " + allCountries.get(1).getContinent() + " is " + totalPopulationContinent);
-
-        // The population of the world
-        long totalPopulationWorld = 0;
-        for(Country country1: allCountries){
-            totalPopulationWorld += country1.getPopulation();
-        }
-        System.out.println("The population of the world is: " + totalPopulationWorld);
-
-        // Population of people, people in cities and people not in cities in each country
-        for(Country country1: allCountries){
-            long populationInCity = 0;
-            for(City city1: allCities){
-                if(city1.getCountry_code().equals(country1.getISO3Code())){
-                    populationInCity += city1.getPopulation();
-                }
-            }
-            System.out.println("Population of people in " + country1.getName() + " is " + country1.getPopulation()
-                    + ". People living in cities are " + populationInCity + ". People not living in cities are " + (country1.getPopulation() - populationInCity) + ".");
-            break; // Removing the break will display for all countries. Break is added to limit data displayed so that we don't scroll 2 hours.
+        try{
+            System.out.println("The population of district varna is: " + a.getPopulationOfDistrict("Varna"));
+        }catch (Exception exp){
+            System.out.println(exp);
         }
 
-        // Population of people, people in cities and people not in cities in each region
-        ArrayList<String> regions = new ArrayList<String>();
-        for(Country country1: allCountries){
-            if(!regions.contains(country1.getRegion())){
-                long populationRegion = 0;
-                long populationInCity = 0;
-                for (Country country2 : allCountries) {
-                    if (country1.getRegion().equals(country2.getRegion())) {
-                        populationRegion += country2.getPopulation();
-                        for (City city1 : allCities) {
-                            if (city1.getCountry_code().equals(country2.getISO3Code())) {
-                                populationInCity += city1.getPopulation();
-                            }
-                        }
-                    }
-                }
-                System.out.println("Population of people in " + country1.getRegion() + " is " + populationRegion
-                        + ". People living in cities are " + populationInCity + ". People not living in cities are " + (populationRegion - populationInCity) + ".");
-                regions.add(country1.getRegion());
-            }
-            break; // Removing the break will display for all countries. Break is added to limit data displayed so that we don't scroll 2 hours.
+        try{
+            System.out.println("The population of country Bulgaria is: " + a.getPopulationOfCountry("Bulgaria"));
+        } catch(Exception exc){
+            System.out.println(exc);
         }
 
-        // Population of people, people in cities and people not in cities in each continent
-        ArrayList<String> continents = new ArrayList<String>();
-        for(Country country1: allCountries){
-            if(!continents.contains(country1.getContinent())){
-                long populationContinent = 0;
-                long populationInCity = 0;
-                for (Country country2 : allCountries) {
-                    if (country1.getContinent().equals(country2.getContinent())) {
-                        populationContinent += country2.getPopulation();
-                        for (City city1 : allCities) {
-                            if (city1.getCountry_code().equals(country2.getISO3Code())) {
-                                populationInCity += city1.getPopulation();
-                            }
-                        }
-                    }
-                }
-                System.out.println("Population of people in " + country1.getContinent() + " is " + populationContinent
-                        + ". People living in cities are " + populationInCity + ". People not living in cities are " + (populationContinent - populationInCity) + ".");
-                continents.add(country1.getContinent());
-            }
-            break; // Removing the break will display for all countries. Break is added to limit data displayed so that we don't scroll 2 hours.
+        try{
+            System.out.println("The population of Eastern Europe region is: " + a.getPopulationOfRegion("Eastern Europe"));
+        } catch(Exception exc){
+            System.out.println(exc);
         }
 
-
-
-
-        // LANGUAGES
-        long numberOfPeopleChinese = 0;
-        long numberOfPeopleEnglish = 0;
-        long numberOfPeopleArabic = 0;
-        long numberOfPeopleHindi = 0;
-        long numberOfPeopleSpanish = 0;
-
-        // Getting the number of people speaking the given language
-        for(Country count : allCountries){
-            for(Language lang: allLanguages) {
-                if(count.getISO3Code().equals(lang.getCountryCode())){
-                    if(lang.getLanguageName().equals("Chinese")){
-                        numberOfPeopleChinese = numberOfPeopleChinese + (long) (count.getPopulation() * lang.getPercentage() / 100);
-                    }
-                    else if(lang.getLanguageName().equals("English")){
-                        numberOfPeopleEnglish = numberOfPeopleEnglish + (long) (count.getPopulation() * lang.getPercentage() / 100);
-                    }
-                    else if(lang.getLanguageName().equals("Hindi")){
-                        numberOfPeopleHindi = numberOfPeopleHindi + (long) (count.getPopulation() * lang.getPercentage() / 100);
-                    }
-                    else if(lang.getLanguageName().equals("Arabic")){
-                        numberOfPeopleArabic = numberOfPeopleArabic + (long) (count.getPopulation() * lang.getPercentage() / 100);
-                    }
-                    else if(lang.getLanguageName().equals("Spanish")){
-                        numberOfPeopleSpanish = numberOfPeopleSpanish + (long) (count.getPopulation() * lang.getPercentage() / 100);
-                    }
-                }
-            }
+        try{
+            System.out.println("The population of continent Asia is: " + a.getPopulationOfContinent("Asia"));
+        } catch(Exception exc){
+            System.out.println(exc);
         }
 
-        // Calculating the percentage of the speakers
-        double percentageChinese = numberOfPeopleChinese * 100.0 / totalPopulationWorld;
-        double percentageEnglish = numberOfPeopleEnglish * 100.0 / totalPopulationWorld;
-        double percentageHindi = numberOfPeopleHindi * 100.0 / totalPopulationWorld;
-        double percentageSpanish = numberOfPeopleSpanish * 100.0 / totalPopulationWorld;
-        double percentageArabic =  numberOfPeopleArabic * 100.0 / totalPopulationWorld;
-
-        // Printing all the speakers for the given languages
-        System.out.println("People speaking Chinese: " + numberOfPeopleChinese + ", Percentage: " + String.format("%.2f", percentageChinese) + "%");
-        System.out.println("People speaking English: " + numberOfPeopleEnglish + ", Percentage: " + String.format("%.2f", percentageEnglish) + "%");
-        System.out.println("People speaking Hindi: " + numberOfPeopleHindi + ", Percentage: " + String.format("%.2f", percentageHindi) + "%");
-        System.out.println("People speaking Spanish: " + numberOfPeopleSpanish + ", Percentage: " + String.format("%.2f", percentageSpanish) + "%");
-        System.out.println("People speaking Arabic: " + numberOfPeopleArabic + ", Percentage: " + String.format("%.2f", percentageArabic) + "%");
-
-        for (City curr:
-                cityReport) {
-            System.out.println(curr);
+        try{
+            System.out.println("The population of the world is: " + a.getWorldPopulation());
+        }catch (Exception exc){
+            System.out.println(exc);
+        }
+        try{
+            System.out.println("People not living in cities for Country Bulgaria is: " + a.getNumberOfPeopleLivingInVillagesForCountry("Bulgaria") );
+        } catch(Exception exc){
+            System.out.println(exc);
         }
 
         // Disconnect from database
         a.disconnect();
     }
 
+
+    public long getNumberOfPeopleLivingInVillagesForCountry(String countryName) throws Exception{
+        if(countryName == null){
+            throw new IllegalArgumentException("Wrong parameter value type");
+        }
+        List<City> allCities = getAllCities();
+        List<Country> alLCountries = getAllCountries();
+        Country country = null;
+        for(Country currCountry: alLCountries){
+            if(currCountry.getName().equals(countryName)){
+                country = currCountry;
+                break;
+            }
+        }
+
+        if(country == null){
+            throw new Exception("Country not found");
+        }
+
+        long continentPopulation = 0;
+        long peopleLivingInCities = 0;
+        for(City currCity: allCities){
+            if(currCity.getCountry_code().equals(country.getISO3Code())){
+                peopleLivingInCities += currCity.getPopulation();
+            }
+        }
+        return country.getPopulation() - peopleLivingInCities;
+    }
+
+    public long getWorldPopulation(){
+        List<Country> allCountries = getAllCountries();
+        long worldPopulation = 0;
+        for(Country currCountry: allCountries){
+            worldPopulation += currCountry.getPopulation();
+            }
+        return worldPopulation;
+    }
+
+
+    public long getPopulationOfContinent(String continentName){
+        if(continentName == null){
+            throw new IllegalArgumentException("Wrong parameter value type");
+        }
+        List<Country> allCountries = getAllCountries();
+        long continentPopulation = 0;
+        for(Country currCountry: allCountries){
+            if(currCountry.getRegion().equals(continentName)){
+                continentPopulation += currCountry.getPopulation();
+            }
+        }
+        throw new IllegalArgumentException("Country not found");
+    }
+    public int getPopulationOfRegion(String regionName) throws IllegalArgumentException{
+        if(regionName == null){
+            throw new IllegalArgumentException("Wrong parameter value type");
+        }
+        List<Country> allCountries = getAllCountries();
+        int regionPopulation = 0;
+        for(Country currCountry: allCountries){
+            if(currCountry.getRegion().equals(regionName)){
+                regionPopulation += currCountry.getPopulation();
+            }
+        }
+        throw new IllegalArgumentException("Country not found");
+    }
+
     //Connection to MySQL database
     private Connection con = null;
+
+    public int getPopulationOfCountry(String countryName) throws  IllegalArgumentException {
+        if(countryName == null){
+            throw new IllegalArgumentException("Wrong parameter value type");
+        }
+        List<Country> allCountries = getAllCountries();
+        int totalPopulation = 0;
+        for(Country currCountry: allCountries){
+            if(currCountry.getName().equals(countryName)){
+                return currCountry.getPopulation();
+            }
+        }
+        throw new IllegalArgumentException("Country not found");
+    }
+
+    public int getPopulationOfDistrict(String districtName) throws IllegalArgumentException {
+        if(districtName == null){
+            throw new IllegalArgumentException("Wrong parameter value type");
+        }
+        List<City> allCities = getAllCities();
+        int totalPopulation = 0;
+        for(City currCity: allCities){
+            if(currCity.getDistrict().equals(districtName)){
+                totalPopulation += currCity.getPopulation();
+
+            }
+        }
+        return totalPopulation;
+    }
 
     /**
      * Connects to the mysql jdbc driver
