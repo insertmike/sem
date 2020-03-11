@@ -14,12 +14,14 @@ public class AppIntegrationTest
 
     @BeforeAll
     static void init() {
+
         app = new App();
         app.connect("localhost:33060");
     }
 
     @Test
     void testGetCity() {
+
         City city = app.getCity(1);
         assertEquals(city.getId(), 1);
         assertEquals(city.getName(), "Kabul");
@@ -27,4 +29,17 @@ public class AppIntegrationTest
         assertEquals(city.getDistrict(), "Kabol");
         assertEquals(city.getPopulation(), 1780000);
     }
+
+    @Test
+    void testGetCountryLanguage() {
+
+        Language language = app.getCountryLanguage("ABW", "Dutch");
+        assertEquals(language.getCountryCode(), "ABW");
+        assertEquals(language.getLanguageName(), "Dutch");
+        assertEquals(language.isOfficial(), "T");
+        assertEquals(language.getPercentage(), 5.3);
+    }
+
+
+
 }

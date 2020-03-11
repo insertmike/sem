@@ -11,7 +11,7 @@ class LanguageTest {
     @Test
     void getCountryCode() {
         // Arrange
-        Language language = new Language("COL", "English", false, 25);
+        Language language = new Language("COL", "English", "F", 25);
 
         // Assert
         assertEquals("COL", language.getCountryCode());
@@ -20,7 +20,7 @@ class LanguageTest {
     @Test
     void getLanguageName() {
         // Arrange
-        Language language = new Language("COL", "English", false, 25);
+        Language language = new Language("COL", "English", "F", 25);
 
         // Assert
         assertEquals("English", language.getLanguageName());
@@ -29,16 +29,16 @@ class LanguageTest {
     @Test
     void isOfficial() {
         // Arrange
-        Language language = new Language("COL", "English", false, 25);
+        Language language = new Language("COL", "English", "F", 25);
 
         // Assert
-        assertEquals(false, language.isOfficial());
+        assertEquals("F", language.isOfficial());
     }
 
     @Test
     void getPercentage() {
         // Arrange
-        Language language = new Language("COL", "English", false, 25);
+        Language language = new Language("COL", "English", "F", 25);
 
         // Assert
         assertEquals(25, language.getPercentage());
@@ -47,9 +47,9 @@ class LanguageTest {
     @Test
     void toStringTest() {
         //Arrange
-        Language language = new Language("COL", "English", false, 25);
+        Language language = new Language("COL", "English", "F", 25);
 
         //Assert
-        assertEquals("Language{" + "languageName='English" + "', " + "percentage='25.0" + "', " +  "isOfficial='false" + "'" + "}", language.toString());
+        assertEquals("Language{" + "languageName='English" + "', " + "percentage='25.0" + "', " +  "isOfficial='F" + "'" + "}", language.toString());
     }
 }

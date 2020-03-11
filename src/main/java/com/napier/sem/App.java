@@ -34,35 +34,36 @@ public class App {
             a.connect(args[0]);
         }
 
+        // _______________
+        // Reports Display
+
         // Get Target City Record
         City city = a.getCity(1);
-
-        // Display target result
         a.displayCity(city);
 
         // Get all cities
         List<City> allCities = a.getAllCities();
-
         System.out.println("Total cities: " + allCities.size());
-
         System.out.println("First city in the list: " + allCities.get(0).toString());
+
+        // ________________
+        // Countries Report
 
         // Get all countries
         List<Country> allCountries = a.getAllCountries();
-
-        // Get all Languages
-        List<Language> allLanguages = a.getAllLanguages();
-
-        System.out.println("First language " + allLanguages.get(0));
-
         System.out.println("Total countries: " + allCountries.size());
-
         Country firstCountryInList = allCountries.get(0);
-
         System.out.println("First country in the list: " + firstCountryInList.toString());
-
         System.out.println("City by largest population for: " + firstCountryInList.getName());
 
+        // ________________
+        // Languages Report
+        // Get all Languages
+        List<Language> allLanguages = a.getAllLanguages();
+        System.out.println("First language " + allLanguages.get(0).toString());
+
+        // ________________
+        // City Report
         List<City> cityReport = a.getCitiesByLargestPopulationInCountry(firstCountryInList);
 
         // The population of city Varna
@@ -208,6 +209,7 @@ public class App {
      * Connects to the mysql jdbc driver
      * @return Nothing;
      */
+
     public void connect(String location) {
         try {
             // Load Database driver
@@ -245,6 +247,7 @@ public class App {
      * // Disconnect from the MySQL database.
      * @return Nothing;
      */
+
     public void disconnect() {
         if (con != null)
         {
@@ -259,6 +262,9 @@ public class App {
             }
         }
     }
+
+    // ____________________
+    // get methods:
 
     /**
      * All the cities from MySQL world database in the region of @param country organised by largest population
@@ -295,6 +301,7 @@ public class App {
      * All countries from MySQL world database stored in ArrayList data structure.
      * @return ArrayList<Country>
      */
+
     public List<Country> getAllCountries() {
         List<Country> countries = new ArrayList<>();
         try{
@@ -329,6 +336,7 @@ public class App {
      * All cities from MySQL world database stored in ArrayList data structure.
      * @return ArrayList<City>
      */
+
     public List<City> getAllCities() {
         List<City> cities = new ArrayList<>();
         try{
@@ -358,6 +366,7 @@ public class App {
      * All languages from MySQL world database stored in ArrayList data structure.
      * @return ArrayList<Language>
      */
+
     public List<Language> getAllLanguages() {
         List<Language> languages = new ArrayList<>();
         try{
@@ -373,8 +382,9 @@ public class App {
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while(rset.next()){
-                Language curr_language = new Language(rset.getString("CountryCode"), rset.getString("Language"),  rset.getBoolean("IsOfficial"), rset.getFloat("Percentage"));
+                Language curr_language = new Language(rset.getString("CountryCode"), rset.getString("Language"),  rset.getString("IsOfficial"), rset.getDouble("Percentage"));
                 languages.add(curr_language);
+                System.out.println(languages);
             }
 
         } catch (Exception e){
@@ -386,9 +396,9 @@ public class App {
     /** Method GET Target City Data:
      * @return City
      */
+
     public City getCity(int ID) {
-        try
-        {
+        try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
 
@@ -414,15 +424,59 @@ public class App {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get target City");
             return null;
         }
     }
+
+    /**
+     * Method GET Target Country Language Data:
+     *
+     * @param countryCode
+     * @param languageName
+     * @return
+     */
+
+    public Language getCountryLanguage(String countryCode, String languageName){
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT CountryCode, Language, IsOfficial, Percentage " +
+                        "FROM countrylanguage " +
+                        "WHERE CountryCode = " + "\"" + countryCode + "\"" +
+                        " AND Language = " + "\"" + languageName + "\"";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Return new employee if valid.
+
+            // Check one is returned
+            if (rset.next()) {
+                return new Language(rset.getString("CountryCode"), rset.getString("Language"),  rset.getString("IsOfficial"), rset.getDouble("Percentage"));
+            }
+            else
+                return null;
+        }
+            catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get target Country Language");
+            return null;
+        }
+    }
+
+    // ____________________
+    // visual-display methods:
 
     /** Method for Displaying Target Data
      * @param city The city to be displayed
      * @return Nothing
      */
+
     public void displayCity(City city) {
         if (city != null)
         {
