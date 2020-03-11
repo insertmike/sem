@@ -42,33 +42,35 @@ public class App {
         a.displayCity(city);
 
         // Get all cities
-        List<City> allCities = a.getAllCities();
-        System.out.println("Total cities: " + allCities.size());
-        System.out.println("First city in the list: " + allCities.get(0).toString());
+        // [Commented Out Due Max Travis CI Lines] List<City> allCities = a.getAllCities();
+        // [Commented Out Due Max Travis CI Lines] System.out.println("Total cities: " + allCities.size());
+        // [Commented Out Due Max Travis CI Lines] System.out.println("First city in the list: " + allCities.get(0).toString());
 
         // ________________
         // Countries Report
 
         // Get all countries
-        List<Country> allCountries = a.getAllCountries();
-        System.out.println("Total countries: " + allCountries.size());
-        Country firstCountryInList = allCountries.get(0);
-        System.out.println("First country in the list: " + firstCountryInList.toString());
-        System.out.println("City by largest population for: " + firstCountryInList.getName());
+        // [Commented Out Due Max Travis CI Lines] List<Country> allCountries = a.getAllCountries();
+        // [Commented Out Due Max Travis CI Lines] System.out.println("Total countries: " + allCountries.size());
+        // [Commented Out Due Max Travis CI Lines] Country firstCountryInList = allCountries.get(0);
+        // [Commented Out Due Max Travis CI Lines] System.out.println("First country in the list: " + firstCountryInList.toString());
+        // [Commented Out Due Max Travis CI Lines] System.out.println("City by largest population for: " + firstCountryInList.getName());
 
         // ________________
         // Languages Report
         // Get all Languages
-        List<Language> allLanguages = a.getAllLanguages();
-        System.out.println("First language " + allLanguages.get(0).toString());
+        // [Commented Out Due Max Travis CI Lines] List<Language> allLanguages = a.getAllLanguages();
+        // [Commented Out Due Max Travis CI Lines] System.out.println("First language " + allLanguages.get(0).toString());
 
         // ________________
         // City Report
-        List<City> cityReport = a.getCitiesByLargestPopulationInCountry(firstCountryInList);
+        // [Commented Out Due Max Travis CI Lines] List<City> cityReport = a.getCitiesByLargestPopulationInCountry(firstCountryInList);
 
         // The population of city Varna
-        System.out.println("The population of city: " + allCities.get(540).getName() + " is " + allCities.get(540).getPopulation());
+        // [Commented Out Due Max Travis CI Lines] System.out.println("The population of city: " + allCities.get(540).getName() + " is " + allCities.get(540).getPopulation());
 
+        // [Commented Out Due Max Travis CI Lines]
+        /*
         try{
             System.out.println("The population of district varna is: " + a.getPopulationOfDistrict("Varna"));
         }catch (Exception exp){
@@ -103,6 +105,7 @@ public class App {
         } catch(Exception exc){
             System.out.println(exc);
         }
+         */
 
         // Disconnect from database
         a.disconnect();
