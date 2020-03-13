@@ -13,13 +13,14 @@ import java.util.List;
  * @author Mihail Yonchev
  * @author Valeri Vladimirov
  * @version 0.1.0.4
- * @since   2020-08-02
+ * @since 2020-08-02
  */
 
 public class App {
 
     /**
      * This is the main method
+     *
      * @param args Unused.
      */
     public static void main(String[] args) {
@@ -29,8 +30,7 @@ public class App {
         // Connect to database
         if (args.length < 1) {
             a.connect("localhost:3306");
-        }
-        else {
+        } else {
             a.connect(args[0]);
         }
 
@@ -48,6 +48,13 @@ public class App {
 
         // ________________
         // Countries Report
+
+//        a.displayCountriesInWorld();
+//        a.displayCountriesInContinent("Asia");
+//        a.displayCountriesInRegion("Eastern Africa");
+//        a.displayCountriesInWorld(0);
+//        a.displayCountriesInContinent(0, "Antarctica");
+//        a.displayCountriesInRegion(0, "Micronesia/Caribbean");
 
         // Get all countries
         // [Commented Out Due Max Travis CI Lines] List<Country> allCountries = a.getAllCountries();
@@ -112,27 +119,27 @@ public class App {
     }
 
     public long getNumberOfPeopleLivingInVillagesForCountry(String countryName) throws Exception {
-        if(countryName == null){
+        if (countryName == null) {
             throw new IllegalArgumentException("Wrong parameter value type");
         }
         List<City> allCities = getAllCities();
         List<Country> alLCountries = getAllCountries();
         Country country = null;
-        for(Country currCountry: alLCountries){
-            if(currCountry.getName().equals(countryName)){
+        for (Country currCountry : alLCountries) {
+            if (currCountry.getName().equals(countryName)) {
                 country = currCountry;
                 break;
             }
         }
 
-        if(country == null){
+        if (country == null) {
             throw new Exception("Country not found");
         }
 
         long continentPopulation = 0;
         long peopleLivingInCities = 0;
-        for(City currCity: allCities){
-            if(currCity.getCountry_code().equals(country.getISO3Code())){
+        for (City currCity : allCities) {
+            if (currCity.getCountry_code().equals(country.getISO3Code())) {
                 peopleLivingInCities += currCity.getPopulation();
             }
         }
@@ -142,34 +149,34 @@ public class App {
     public long getWorldPopulation() {
         List<Country> allCountries = getAllCountries();
         long worldPopulation = 0;
-        for(Country currCountry: allCountries){
+        for (Country currCountry : allCountries) {
             worldPopulation += currCountry.getPopulation();
-            }
+        }
         return worldPopulation;
     }
 
     public long getPopulationOfContinent(String continentName) {
-        if(continentName == null){
+        if (continentName == null) {
             throw new IllegalArgumentException("Wrong parameter value type");
         }
         List<Country> allCountries = getAllCountries();
         long continentPopulation = 0;
-        for(Country currCountry: allCountries){
-            if(currCountry.getRegion().equals(continentName)){
+        for (Country currCountry : allCountries) {
+            if (currCountry.getRegion().equals(continentName)) {
                 continentPopulation += currCountry.getPopulation();
             }
         }
         throw new IllegalArgumentException("Country not found");
     }
 
-    public int getPopulationOfRegion(String regionName) throws IllegalArgumentException{
-        if(regionName == null){
+    public int getPopulationOfRegion(String regionName) throws IllegalArgumentException {
+        if (regionName == null) {
             throw new IllegalArgumentException("Wrong parameter value type");
         }
         List<Country> allCountries = getAllCountries();
         int regionPopulation = 0;
-        for(Country currCountry: allCountries){
-            if(currCountry.getRegion().equals(regionName)){
+        for (Country currCountry : allCountries) {
+            if (currCountry.getRegion().equals(regionName)) {
                 regionPopulation += currCountry.getPopulation();
             }
         }
@@ -179,14 +186,14 @@ public class App {
     //Connection to MySQL database
     private Connection con = null;
 
-    public int getPopulationOfCountry(String countryName) throws  IllegalArgumentException {
-        if(countryName == null){
+    public int getPopulationOfCountry(String countryName) throws IllegalArgumentException {
+        if (countryName == null) {
             throw new IllegalArgumentException("Wrong parameter value type");
         }
         List<Country> allCountries = getAllCountries();
         int totalPopulation = 0;
-        for(Country currCountry: allCountries){
-            if(currCountry.getName().equals(countryName)){
+        for (Country currCountry : allCountries) {
+            if (currCountry.getName().equals(countryName)) {
                 return currCountry.getPopulation();
             }
         }
@@ -194,13 +201,13 @@ public class App {
     }
 
     public int getPopulationOfDistrict(String districtName) throws IllegalArgumentException {
-        if(districtName == null){
+        if (districtName == null) {
             throw new IllegalArgumentException("Wrong parameter value type");
         }
         List<City> allCities = getAllCities();
         int totalPopulation = 0;
-        for(City currCity: allCities){
-            if(currCity.getDistrict().equals(districtName)){
+        for (City currCity : allCities) {
+            if (currCity.getDistrict().equals(districtName)) {
                 totalPopulation += currCity.getPopulation();
 
             }
@@ -208,8 +215,87 @@ public class App {
         return totalPopulation;
     }
 
+
+    /**
+     * Display all countries from ArrayList<Country>
+     */
+    public void displayCountriesInWorld() {
+        System.out.println("Countries in the world" + "\n");
+        List<Country> allCountries = getAllCountries();
+        for (Country country : allCountries) {
+            System.out.println(country.getCountryReport());
+        }
+    }
+
+    /**
+     * Display all countries in a continent from ArrayList<Country>
+     */
+    public void displayCountriesInContinent(String continent) {
+        System.out.println("Countries in " + continent + "\n");
+        List<Country> allCountries = getAllCountries();
+        for (Country country : allCountries) {
+            if (country.getContinent().equals(continent)) {
+                System.out.println(country.getCountryReport());
+            }
+        }
+    }
+
+    /**
+     * Display all countries in a region from ArrayList<Country>
+     */
+    public void displayCountriesInRegion(String region) {
+        System.out.println("Countries in " + region + ": \n");
+        List<Country> allCountries = getAllCountries();
+        for (Country country : allCountries) {
+            if (country.getRegion().equals(region)) {
+                System.out.println(country.getCountryReport());
+            }
+        }
+    }
+
+    /**
+     * Display all n populated countries from ArrayList<Country>
+     */
+    public void displayCountriesInWorld(int population) {
+        System.out.println("Countries in the world with population " + population + "\n");
+        List<Country> allCountries = getAllCountries();
+        for (Country country : allCountries) {
+            if (country.getPopulation() == population) {
+                System.out.println(country.getCountryReport());
+            }
+        }
+    }
+
+    /**
+     * Display all n populated countries in a continent from ArrayList<Country>
+     */
+    public void displayCountriesInContinent(int population, String continent) {
+        System.out.println("Countries in " + continent + " with population " + population + "\n");
+        List<Country> allCountries = getAllCountries();
+        for (Country country : allCountries) {
+            if (country.getPopulation() == population && country.getContinent().equals(continent)) {
+                System.out.println(country.getCountryReport());
+            }
+        }
+    }
+
+    /**
+     * Display all n populated countries in a region from ArrayList<Country>
+     */
+    public void displayCountriesInRegion(int population, String region) {
+        System.out.println("Countries in " + region + " with population " + population + "\n");
+        List<Country> allCountries = getAllCountries();
+        for (Country country : allCountries) {
+            if (country.getPopulation() == population && country.getRegion().equals(region)) {
+                System.out.println(country.getCountryReport());
+            }
+        }
+    }
+
+
     /**
      * Connects to the mysql jdbc driver
+     *
      * @return Nothing;
      */
 
@@ -217,8 +303,7 @@ public class App {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
@@ -234,13 +319,10 @@ public class App {
                 con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            }
-            catch (SQLException sqle) {
+            } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
+            } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
@@ -248,19 +330,16 @@ public class App {
 
     /**
      * // Disconnect from the MySQL database.
+     *
      * @return Nothing;
      */
 
     public void disconnect() {
-        if (con != null)
-        {
-            try
-            {
+        if (con != null) {
+            try {
                 // Close connection
                 con.close();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
         }
@@ -271,13 +350,14 @@ public class App {
 
     /**
      * All the cities from MySQL world database in the region of @param country organised by largest population
+     *
      * @param country The region we aiming
      * @return ArrayList<City>
      */
     public List<City> getCitiesByLargestPopulationInCountry(Country country) {
         List<City> cities = new ArrayList<>();
         String countryCode = country.getISO3Code();
-        try{
+        try {
 
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -289,12 +369,12 @@ public class App {
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            while(rset.next()){
-                City curr_city = new City(rset.getInt("ID"), rset.getString("Name"),  rset.getString("CountryCode"),rset.getString("District"),rset.getInt("Population"));
+            while (rset.next()) {
+                City curr_city = new City(rset.getInt("ID"), rset.getString("Name"), rset.getString("CountryCode"), rset.getString("District"), rset.getInt("Population"));
                 cities.add(curr_city);
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
         return cities;
@@ -302,47 +382,51 @@ public class App {
 
     /**
      * All countries from MySQL world database stored in ArrayList data structure.
+     *
      * @return ArrayList<Country>
      */
-
     public List<Country> getAllCountries() {
         List<Country> countries = new ArrayList<>();
-        try{
+        try {
 
             // Create an SQL statement
             Statement stmt = con.createStatement();
 
             // Create string for SQL statement
-            String strSelect =
-                    "SELECT * FROM country";
+            String strSelect = "SELECT co.Code, co.Name, co.Continent, co.Region, co.SurfaceArea, COALESCE(co.IndepYear, 0) AS IndepYear , COALESCE(co.Population, 0) AS Population, COALESCE(co.LifeExpectancy, 0) AS LifeExpectancy, co.GNP, co.GNPOld, co.LocalName, co.GovernmentForm, co.HeadOfState, COALESCE(ci.Name, \"\") AS Capital, co.Code2\n" +
+                    "FROM country co\n" +
+                    "LEFT JOIN city ci ON co.Capital = ci.ID\n" +
+                    "ORDER BY co.Population DESC;";
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            while(rset.next()){
+            while (rset.next()) {
                 Country curr_country = new Country(rset.getString("Code"), rset.getString("Name"),
-                        rset.getString("Continent"),rset.getString("Region"),rset.getDouble("SurfaceArea"),
+                        rset.getString("Continent"), rset.getString("Region"), rset.getDouble("SurfaceArea"),
                         rset.getInt("IndepYear"), rset.getInt("Population"), rset.getDouble("LifeExpectancy"),
                         rset.getDouble("GNP"), rset.getDouble("GNPOld"), rset.getString("LocalName"),
                         rset.getString("GovernmentForm"), rset.getString("HeadOfState"),
-                        rset.getInt("Capital"), rset.getString("Code2"));
+                        rset.getString("Capital"), rset.getString("Code2"));
                 countries.add(curr_country);
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
         return countries;
     }
 
+
     /**
      * All cities from MySQL world database stored in ArrayList data structure.
+     *
      * @return ArrayList<City>
      */
 
     public List<City> getAllCities() {
         List<City> cities = new ArrayList<>();
-        try{
+        try {
 
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -354,12 +438,12 @@ public class App {
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            while(rset.next()){
-                City curr_city = new City(rset.getInt("ID"), rset.getString("Name"),  rset.getString("CountryCode"),rset.getString("District"),rset.getInt("Population"));
+            while (rset.next()) {
+                City curr_city = new City(rset.getInt("ID"), rset.getString("Name"), rset.getString("CountryCode"), rset.getString("District"), rset.getInt("Population"));
                 cities.add(curr_city);
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
         return cities;
@@ -367,12 +451,13 @@ public class App {
 
     /**
      * All languages from MySQL world database stored in ArrayList data structure.
+     *
      * @return ArrayList<Language>
      */
 
     public List<Language> getAllLanguages() {
         List<Language> languages = new ArrayList<>();
-        try{
+        try {
 
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -384,19 +469,21 @@ public class App {
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            while(rset.next()){
-                Language curr_language = new Language(rset.getString("CountryCode"), rset.getString("Language"),  rset.getString("IsOfficial"), rset.getDouble("Percentage"));
+            while (rset.next()) {
+                Language curr_language = new Language(rset.getString("CountryCode"), rset.getString("Language"), rset.getString("IsOfficial"), rset.getDouble("Percentage"));
                 languages.add(curr_language);
                 System.out.println(languages);
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
         return languages;
     }
 
-    /** Method GET Target City Data:
+    /**
+     * Method GET Target City Data:
+     *
      * @return City
      */
 
@@ -417,15 +504,11 @@ public class App {
             // Return new employee if valid.
 
             // Check one is returned
-            if (rset.next())
-            {
-                return new City(rset.getInt("ID"), rset.getString("Name"),  rset.getString("CountryCode"),rset.getString("District"),rset.getInt("Population"));
-            }
-            else
+            if (rset.next()) {
+                return new City(rset.getInt("ID"), rset.getString("Name"), rset.getString("CountryCode"), rset.getString("District"), rset.getInt("Population"));
+            } else
                 return null;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get target City");
             return null;
@@ -440,7 +523,7 @@ public class App {
      * @return
      */
 
-    public Language getCountryLanguage(String countryCode, String languageName){
+    public Language getCountryLanguage(String countryCode, String languageName) {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -448,9 +531,9 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT CountryCode, Language, IsOfficial, Percentage " +
-                        "FROM countrylanguage " +
-                        "WHERE CountryCode = " + "\"" + countryCode + "\"" +
-                        " AND Language = " + "\"" + languageName + "\"";
+                            "FROM countrylanguage " +
+                            "WHERE CountryCode = " + "\"" + countryCode + "\"" +
+                            " AND Language = " + "\"" + languageName + "\"";
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -459,13 +542,10 @@ public class App {
 
             // Check one is returned
             if (rset.next()) {
-                return new Language(rset.getString("CountryCode"), rset.getString("Language"),  rset.getString("IsOfficial"), rset.getDouble("Percentage"));
-            }
-            else
+                return new Language(rset.getString("CountryCode"), rset.getString("Language"), rset.getString("IsOfficial"), rset.getDouble("Percentage"));
+            } else
                 return null;
-        }
-            catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get target Country Language");
             return null;
@@ -475,14 +555,15 @@ public class App {
     // ____________________
     // visual-display methods:
 
-    /** Method for Displaying Target Data
+    /**
+     * Method for Displaying Target Data
+     *
      * @param city The city to be displayed
      * @return Nothing
      */
 
     public void displayCity(City city) {
-        if (city != null)
-        {
+        if (city != null) {
             System.out.println(city.toString());
         }
     }

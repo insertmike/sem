@@ -15,7 +15,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals("COL", country.getISO3Code());
@@ -29,7 +29,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals("Columbia", country.getName());
@@ -43,7 +43,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals("South America", country.getContinent());
@@ -57,7 +57,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals("South America", country.getRegion());
@@ -71,7 +71,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals(10.00, country.getSurfaceArea());
@@ -85,7 +85,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals(1966, country.getIndependenceYear());
@@ -99,7 +99,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals(100, country.getPopulation());
@@ -113,7 +113,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals(20.00, country.getLifeExpectancy());
@@ -127,7 +127,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals(200.00, country.getGNP());
@@ -141,7 +141,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals(300.00, country.getGNPOld());
@@ -155,7 +155,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals("Aruba", country.getLocalName());
@@ -169,7 +169,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals("Islamic Emirate", country.getGovernmentForm());
@@ -183,7 +183,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
         assertEquals("Mohammad Omar", country.getHeadOfState());
@@ -197,10 +197,10 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         // Assert
-        assertEquals(1, country.getCapital());
+        assertEquals("Bogota", country.getCapital());
     }
 
     @Test
@@ -211,7 +211,7 @@ class CountryTest
                 10.00, 1966, 100,
                 20.00, 200.00, 300.00,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar","Bogota" , "CO");
 
         // Assert
         assertEquals("CO", country.getISO2Code());
@@ -225,7 +225,7 @@ class CountryTest
                 10.0, 1966, 100,
                 20.0, 200.0, 300.0,
                 "Aruba", "Islamic Emirate",
-                "Mohammad Omar", 1, "CO");
+                "Mohammad Omar", "Bogota", "CO");
 
         //Assert
         assertEquals("Country{" +
@@ -242,7 +242,7 @@ class CountryTest
                 ", localName='Aruba" + '\'' +
                 ", governmentForm='Islamic Emirate" + '\'' +
                 ", headOfState='Mohammad Omar" + '\'' +
-                ", capital=1"  +
+                ", capital=Bogota"  +
                 ", ISO2Code='CO" + '\'' +
                 '}', country.toString());
 

@@ -1,5 +1,7 @@
 package com.napier.sem;
 
+import com.mysql.cj.util.StringUtils;
+
 /**
  * <h1>Country Class</h1>
  * Represents the Country class
@@ -23,10 +25,10 @@ public class Country {
     private final String localName;
     private final String governmentForm;
     private final String headOfState;
-    private final int capital;
+    private final String capital;
     private final String ISO2Code;
 
-    public Country(String ISO3Code, String name, String continent, String region, Double surfaceArea, int indepYear, int population, double lifeExpectancy, double GNP, double GNPOld, String localName, String governmentForm, String headOfState, int capital, String ISO2Code) {
+    public Country(String ISO3Code, String name, String continent, String region, Double surfaceArea, int indepYear, int population, double lifeExpectancy, double GNP, double GNPOld, String localName, String governmentForm, String headOfState, String capital, String ISO2Code) {
         this.ISO3Code = ISO3Code;
         this.name = name;
         this.continent = continent;
@@ -45,6 +47,13 @@ public class Country {
     }
 
     /**
+     * @return Country attributes required in the report
+     */
+    public String getCountryReport() {
+        return String.format("%s %s %s %s %s %s %n", ISO2Code , name , continent, region, population, capital);
+    }
+
+    /**
      * @return The ISO 3166-1 alpha-3 country code
      */
     public String getISO3Code() {
@@ -57,14 +66,12 @@ public class Country {
     public String getName() {
         return name;
     }
-
     /**
      * @return The continent of the country
      */
     public String getContinent() {
         return continent;
     }
-
     /**
      * @return The geographic region of the country
      */
@@ -106,7 +113,6 @@ public class Country {
     public double getGNP() {
         return GNP;
     }
-
     /**
      *  @return The old GNP (Gross National Product) of the country
      */
@@ -139,10 +145,9 @@ public class Country {
     /**
      *  @return The capital of the country
      */
-    public int getCapital() {
+    public String getCapital() {
         return capital;
     }
-
     /**
      *  @return The ISO2Code of the country
      */
