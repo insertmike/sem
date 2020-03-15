@@ -1,7 +1,5 @@
 package com.napier.sem;
 
-import com.mysql.cj.util.StringUtils;
-
 /**
  * <h1>Country Class</h1>
  * Represents the Country class
