@@ -57,12 +57,14 @@ public class Country {
     public String getName() {
         return name;
     }
+
     /**
      * @return The continent of the country
      */
     public String getContinent() {
         return continent;
     }
+
     /**
      * @return The geographic region of the country
      */
@@ -104,6 +106,7 @@ public class Country {
     public double getGNP() {
         return GNP;
     }
+
     /**
      *  @return The old GNP (Gross National Product) of the country
      */
@@ -139,6 +142,7 @@ public class Country {
     public int getCapital() {
         return capital;
     }
+
     /**
      *  @return The ISO2Code of the country
      */

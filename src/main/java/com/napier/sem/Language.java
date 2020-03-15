@@ -13,10 +13,18 @@ package com.napier.sem;
 public class Language {
     private String countryCode;
     private String languageName;
-    private boolean isOfficial;
-    private float percentage;
+    private String isOfficial;
+    private Double percentage;
 
-    public Language(String countryCode, String languageName, boolean isOfficial, float percentage) {
+    /**
+     * Class Constructor:
+     *
+     * @param countryCode
+     * @param languageName
+     * @param isOfficial
+     * @param percentage
+     */
+    public Language(String countryCode, String languageName, String isOfficial, double percentage) {
         this.countryCode = countryCode;
         this.languageName = languageName;
         this.isOfficial = isOfficial;
@@ -38,14 +46,14 @@ public class Language {
     /**
      * @return Whether its official
      */
-    public boolean isOfficial() {
+    public String isOfficial() {
         return isOfficial;
     }
 
     /**
      * @return The percentage of people who speak it
      */
-    public float getPercentage() {
+    public double getPercentage() {
         return percentage;
     }
 

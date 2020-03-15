@@ -1,14 +1,45 @@
-# superuser
-sudo: required
-
 language: java
 
-# _________
-# services we wish to use on our system:
+sudo: false
+
+addons:
+  hosts:
+    - db
+
 services:
   - docker
 
-# _________
-# after the project has been successfully built.
+install:
+  - docker build -t database world/.
+  - docker run --rm -d -e MYSQL_ROOT_PASSWORD=example -p 33060:3306 database
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+before_script:
+  - mvn clean
+
+jobs:
+  include:
+    - stage: unit tests
+      install: skip
+      jdk: oraclejdk11
+      script: mvn test -Dtest=com.napier.sem.CityTest
+
+    - stage: integration tests
+      jdk: oraclejdk11
+      script: mvn test -Dtest=com.napier.sem.AppIntegrationTest
+
+    - stage: deploy
+      install: skip
+      jdk: oraclejdk11
+      script:
+        - mvn package -DskipTests=true -Dmaven.javadoc.skip=true
+        - docker-compose up --abort-on-container-exit
+
+stages:
+  - unit tests
+  - integration tests
+  - name: deploy
+    if: branch = master
+
 after_success:
-  - docker-compose up --abort-on-container-exit
+  - bash <(curl -s https://codecov.io/bash)

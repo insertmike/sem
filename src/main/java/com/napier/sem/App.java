@@ -15,54 +15,62 @@ import java.util.List;
  * @version 0.1.0.4
  * @since   2020-08-02
  */
-public class App
-{
+
+public class App {
+
     /**
      * This is the main method
      * @param args Unused.
      */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // Create new Application
         App a = new App();
 
         // Connect to database
-        a.connect();
+        if (args.length < 1) {
+            a.connect("localhost:3306");
+        }
+        else {
+            a.connect(args[0]);
+        }
+
+        // _______________
+        // Reports Display
 
         // Get Target City Record
         City city = a.getCity(1);
-
-        // Display target result
         a.displayCity(city);
 
         // Get all cities
-        List<City> allCities = a.getAllCities();
+        // [Commented Out Due Max Travis CI Lines] List<City> allCities = a.getAllCities();
+        // [Commented Out Due Max Travis CI Lines] System.out.println("Total cities: " + allCities.size());
+        // [Commented Out Due Max Travis CI Lines] System.out.println("First city in the list: " + allCities.get(0).toString());
 
-        System.out.println("Total cities: " + allCities.size());
-
-        System.out.println("First city in the list: " + allCities.get(0).toString());
+        // ________________
+        // Countries Report
 
         // Get all countries
-        List<Country> allCountries = a.getAllCountries();
+        // [Commented Out Due Max Travis CI Lines] List<Country> allCountries = a.getAllCountries();
+        // [Commented Out Due Max Travis CI Lines] System.out.println("Total countries: " + allCountries.size());
+        // [Commented Out Due Max Travis CI Lines] Country firstCountryInList = allCountries.get(0);
+        // [Commented Out Due Max Travis CI Lines] System.out.println("First country in the list: " + firstCountryInList.toString());
+        // [Commented Out Due Max Travis CI Lines] System.out.println("City by largest population for: " + firstCountryInList.getName());
 
+        // ________________
+        // Languages Report
         // Get all Languages
-        List<Language> allLanguages = a.getAllLanguages();
+        // [Commented Out Due Max Travis CI Lines] List<Language> allLanguages = a.getAllLanguages();
+        // [Commented Out Due Max Travis CI Lines] System.out.println("First language " + allLanguages.get(0).toString());
 
-        System.out.println("First language " + allLanguages.get(0));
-
-        System.out.println("Total countries: " + allCountries.size());
-
-        Country firstCountryInList = allCountries.get(0);
-
-        System.out.println("First country in the list: " + firstCountryInList.toString());
-
-        System.out.println("City by largest population for: " + firstCountryInList.getName());
-
-        List<City> cityReport = a.getCitiesByLargestPopulationInCountry(firstCountryInList);
+        // ________________
+        // City Report
+        // [Commented Out Due Max Travis CI Lines] List<City> cityReport = a.getCitiesByLargestPopulationInCountry(firstCountryInList);
 
         // The population of city Varna
-        System.out.println("The population of city: " + allCities.get(540).getName() + " is " + allCities.get(540).getPopulation());
+        // [Commented Out Due Max Travis CI Lines] System.out.println("The population of city: " + allCities.get(540).getName() + " is " + allCities.get(540).getPopulation());
 
+        // [Commented Out Due Max Travis CI Lines]
+        /*
         try{
             System.out.println("The population of district varna is: " + a.getPopulationOfDistrict("Varna"));
         }catch (Exception exp){
@@ -97,13 +105,13 @@ public class App
         } catch(Exception exc){
             System.out.println(exc);
         }
+         */
 
         // Disconnect from database
         a.disconnect();
     }
 
-
-    public long getNumberOfPeopleLivingInVillagesForCountry(String countryName) throws Exception{
+    public long getNumberOfPeopleLivingInVillagesForCountry(String countryName) throws Exception {
         if(countryName == null){
             throw new IllegalArgumentException("Wrong parameter value type");
         }
@@ -131,7 +139,7 @@ public class App
         return country.getPopulation() - peopleLivingInCities;
     }
 
-    public long getWorldPopulation(){
+    public long getWorldPopulation() {
         List<Country> allCountries = getAllCountries();
         long worldPopulation = 0;
         for(Country currCountry: allCountries){
@@ -140,8 +148,7 @@ public class App
         return worldPopulation;
     }
 
-
-    public long getPopulationOfContinent(String continentName){
+    public long getPopulationOfContinent(String continentName) {
         if(continentName == null){
             throw new IllegalArgumentException("Wrong parameter value type");
         }
@@ -154,6 +161,7 @@ public class App
         }
         throw new IllegalArgumentException("Country not found");
     }
+
     public int getPopulationOfRegion(String regionName) throws IllegalArgumentException{
         if(regionName == null){
             throw new IllegalArgumentException("Wrong parameter value type");
@@ -204,35 +212,30 @@ public class App
      * Connects to the mysql jdbc driver
      * @return Nothing;
      */
-    public void connect()
-    {
-        try
-        {
+
+    public void connect(String location) {
+        try {
             // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         }
-        catch (ClassNotFoundException e)
-        {
+        catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i)
-        {
-            // Inform of Connectivity Processes
+        for (int i = 0; i < retries; ++i) {
+
             System.out.println("Connecting to database...");
-            try
-            {
+            try {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
-            catch (SQLException sqle)
-            {
+            catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
             }
@@ -243,13 +246,12 @@ public class App
         }
     }
 
-
     /**
      * // Disconnect from the MySQL database.
      * @return Nothing;
      */
-    public void disconnect()
-    {
+
+    public void disconnect() {
         if (con != null)
         {
             try
@@ -264,12 +266,15 @@ public class App
         }
     }
 
+    // ____________________
+    // get methods:
+
     /**
      * All the cities from MySQL world database in the region of @param country organised by largest population
      * @param country The region we aiming
      * @return ArrayList<City>
      */
-    public List<City> getCitiesByLargestPopulationInCountry(Country country){
+    public List<City> getCitiesByLargestPopulationInCountry(Country country) {
         List<City> cities = new ArrayList<>();
         String countryCode = country.getISO3Code();
         try{
@@ -299,7 +304,8 @@ public class App
      * All countries from MySQL world database stored in ArrayList data structure.
      * @return ArrayList<Country>
      */
-    public List<Country> getAllCountries(){
+
+    public List<Country> getAllCountries() {
         List<Country> countries = new ArrayList<>();
         try{
 
@@ -333,7 +339,8 @@ public class App
      * All cities from MySQL world database stored in ArrayList data structure.
      * @return ArrayList<City>
      */
-    public List<City> getAllCities(){
+
+    public List<City> getAllCities() {
         List<City> cities = new ArrayList<>();
         try{
 
@@ -362,7 +369,8 @@ public class App
      * All languages from MySQL world database stored in ArrayList data structure.
      * @return ArrayList<Language>
      */
-    public List<Language> getAllLanguages(){
+
+    public List<Language> getAllLanguages() {
         List<Language> languages = new ArrayList<>();
         try{
 
@@ -377,8 +385,9 @@ public class App
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while(rset.next()){
-                Language curr_language = new Language(rset.getString("CountryCode"), rset.getString("Language"),  rset.getBoolean("IsOfficial"), rset.getFloat("Percentage"));
+                Language curr_language = new Language(rset.getString("CountryCode"), rset.getString("Language"),  rset.getString("IsOfficial"), rset.getDouble("Percentage"));
                 languages.add(curr_language);
+                System.out.println(languages);
             }
 
         } catch (Exception e){
@@ -390,10 +399,9 @@ public class App
     /** Method GET Target City Data:
      * @return City
      */
-    public City getCity(int ID)
-    {
-        try
-        {
+
+    public City getCity(int ID) {
+        try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
 
@@ -419,17 +427,60 @@ public class App
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get target City");
             return null;
         }
     }
+
+    /**
+     * Method GET Target Country Language Data:
+     *
+     * @param countryCode
+     * @param languageName
+     * @return
+     */
+
+    public Language getCountryLanguage(String countryCode, String languageName){
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT CountryCode, Language, IsOfficial, Percentage " +
+                        "FROM countrylanguage " +
+                        "WHERE CountryCode = " + "\"" + countryCode + "\"" +
+                        " AND Language = " + "\"" + languageName + "\"";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Return new employee if valid.
+
+            // Check one is returned
+            if (rset.next()) {
+                return new Language(rset.getString("CountryCode"), rset.getString("Language"),  rset.getString("IsOfficial"), rset.getDouble("Percentage"));
+            }
+            else
+                return null;
+        }
+            catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get target Country Language");
+            return null;
+        }
+    }
+
+    // ____________________
+    // visual-display methods:
 
     /** Method for Displaying Target Data
      * @param city The city to be displayed
      * @return Nothing
      */
-    public void displayCity(City city)
-    {
+
+    public void displayCity(City city) {
         if (city != null)
         {
             System.out.println(city.toString());

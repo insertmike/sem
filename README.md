@@ -1,6 +1,10 @@
 # Software Engineer Methods Project :clipboard:	
 - Master Build Status : [![Build Status](https://travis-ci.org/insertmike/sem.svg?branch=master)](https://travis-ci.org/insertmike/sem)
 - Develop Build Status : [![Build Status](https://travis-ci.org/insertmike/sem.svg?branch=develop)](https://travis-ci.org/insertmike/sem)
+
+- Master CodeCov [![codecov](https://codecov.io/gh/insertmike/sem/branch/master/graph/badge.svg)](https://codecov.io/gh/insertmike/sem)
+- Develop CodeCov [![codecov](https://codecov.io/gh/insertmike/sem/branch/develop/graph/badge.svg)](https://codecov.io/gh/insertmike/sem)
+
 - License : [![LICENSE](https://img.shields.io/github/license/insertmike/sem.svg?style=flat-square)](https://github.com/insertmike/sem/blob/master/LICENSE)
 - Release : [![Releases](https://img.shields.io/github/release/insertmike/sem/all.svg?style=flat-square)](https://github.com/insertmike/sem/releases)
 
