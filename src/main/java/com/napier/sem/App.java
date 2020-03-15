@@ -12,7 +12,6 @@ import java.util.List;
  * @author Miguel Bacharov
  * @author Mihail Yonchev
  * @author Valeri Vladimirov
- * @version 0.1.0.4
  * @since   2020-08-02
  */
 
@@ -210,7 +209,6 @@ public class App {
 
     /**
      * Connects to the mysql jdbc driver
-     * @return Nothing;
      */
 
     public void connect(String location) {
@@ -248,7 +246,6 @@ public class App {
 
     /**
      * // Disconnect from the MySQL database.
-     * @return Nothing;
      */
 
     public void disconnect() {
@@ -435,9 +432,9 @@ public class App {
     /**
      * Method GET Target Country Language Data:
      *
-     * @param countryCode
-     * @param languageName
-     * @return
+     * @param countryCode The ISO3 Code of the Country
+     * @param languageName The target language
+     * @return Language
      */
 
     public Language getCountryLanguage(String countryCode, String languageName){
@@ -477,7 +474,6 @@ public class App {
 
     /** Method for Displaying Target Data
      * @param city The city to be displayed
-     * @return Nothing
      */
 
     public void displayCity(City city) {
