@@ -460,6 +460,53 @@ public class App {
     }
 
     /**
+     * Method GET Target Country Data:
+     * @param Code
+     * @return
+     */
+    public Country getCountry(String Code) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, SurfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOld, LocalName, GovernmentForm, HeadOfState, Capital, Code2"
+                            + " FROM country"
+                            + " WHERE Code = " + "\"" + Code + "\"";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Return new employee if valid.
+
+            // Check one is returned
+            if (rset.next()) {
+                return new Country(rset.getString("Code"),
+                        rset.getString("Name"),
+                        rset.getString("Continent"),
+                        rset.getString("Region"),
+                        rset.getDouble("SurfaceArea"),
+                        rset.getInt("IndepYear"),
+                        rset.getInt("Population"),
+                        rset.getDouble("LifeExpectancy"),
+                        rset.getDouble("GNP"),
+                        rset.getDouble("GNPOld"),
+                        rset.getString("LocalName"),
+                        rset.getString("GovernmentForm"),
+                        rset.getString("HeadOfState"),
+                        rset.getInt("Capital"),
+                        rset.getString("Code2"));
+            } else
+                return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get target Country");
+            return null;
+        }
+    }
+
+    /**
      * Method GET Target Country Language Data:
      *
      * @param countryCode  The ISO3 Code of the Country

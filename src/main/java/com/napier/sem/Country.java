@@ -10,6 +10,10 @@ package com.napier.sem;
  * @author Valeri Vladimirov
  */
 public class Country {
+
+    // _____________________
+    // Class Variables:
+
     private final String ISO3Code;
     private final String name;
     private final String continent;
@@ -26,7 +30,13 @@ public class Country {
     private final int capital;
     private final String ISO2Code;
 
-    public Country(String ISO3Code, String name, String continent, String region, Double surfaceArea, int indepYear, int population, double lifeExpectancy, double GNP, double GNPOld, String localName, String governmentForm, String headOfState, int capital, String ISO2Code) {
+    // _____________________
+    // Class Constructors:
+
+    public Country(String ISO3Code, String name, String continent, String region,
+                   Double surfaceArea, int indepYear, int population, double lifeExpectancy,
+                   double GNP, double GNPOld, String localName, String governmentForm, String headOfState,
+                   int capital, String ISO2Code) {
         this.ISO3Code = ISO3Code;
         this.name = name;
         this.continent = continent;
@@ -43,6 +53,9 @@ public class Country {
         this.capital = capital;
         this.ISO2Code = ISO2Code;
     }
+
+    // _____________________
+    // Class Getters:
 
     /**
      * @return The ISO 3166-1 alpha-3 country code
@@ -110,7 +123,6 @@ public class Country {
     /**
      *  @return The old GNP (Gross National Product) of the country
      */
-
     public double getGNPOld() {
         return GNPOld;
     }
@@ -149,6 +161,9 @@ public class Country {
     public String getISO2Code() {
         return ISO2Code;
     }
+
+    // _____________________
+    // Class other methods:
 
     @Override
     public String toString() {
