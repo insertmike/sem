@@ -4,8 +4,12 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CityTest
-{
+/**
+ * This Class Tests for the City Data Model to verify that the correct data is
+ * stored in the structs correctly.
+ */
+
+class CityTest {
     @Test
     void getId() {
         //Arrange

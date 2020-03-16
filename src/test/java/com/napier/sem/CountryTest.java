@@ -5,8 +5,12 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CountryTest
-{
+/**
+ * This Class Tests for the CountryTest Data Model to verify that the correct data is
+ * stored in the structs correctly.
+ */
+
+class CountryTest {
     @Test
     void getISO3Code() {
         // Arrange

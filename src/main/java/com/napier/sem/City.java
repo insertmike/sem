@@ -9,6 +9,7 @@ package com.napier.sem;
  * @author Mihail Yonchev
  * @author Valeri Vladimirov
  */
+
 public class City {
     private final int id;
     private final String name;

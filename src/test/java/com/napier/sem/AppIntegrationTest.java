@@ -2,16 +2,20 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AppIntegrationTest
-{
+/**
+ * This class handles the App Integration Tests, meaning that it verifies that the application
+ * works correctly when tested against the database, making sure that everything works correctly.
+ */
+
+public class AppIntegrationTest {
     static App app;
 
+    /**
+     * Intialize the Main Test Class
+     */
     @BeforeAll
     static void init() {
 
@@ -19,6 +23,10 @@ public class AppIntegrationTest
         app.connect("localhost:33060");
     }
 
+    /**
+     * Test to verify that the data returned for a city,
+     * is valid from the database;
+     */
     @Test
     void testGetCity() {
 
@@ -30,6 +38,10 @@ public class AppIntegrationTest
         assertEquals(city.getPopulation(), 1780000);
     }
 
+    /**
+     * Verify for the Country Language data to be returned
+     * correctly.
+     */
     @Test
     void testGetCountryLanguage() {
 
@@ -39,7 +51,5 @@ public class AppIntegrationTest
         assertEquals(language.isOfficial(), "T");
         assertEquals(language.getPercentage(), 5.3);
     }
-
-
 
 }
